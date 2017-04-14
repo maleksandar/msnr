@@ -53,126 +53,39 @@ da na gotovo isti (ili veoma sličan) način i sa istim alatima i jezicima razvi
 naprednije mogućnosti modernih arhitektura procesora. Korišćenjem samo osnovnih hardverskih funkcionalnosti procesora dolazimo do programa koju su veoma malo (ako uopšte) optimizovani.
 
 \par 
-Moderni programski prevodioci uglavnom primenjuju neke statičke tehnike optimizacije, primenjujući različite \emph{transformacije} koda koje čuvaju semantičko značenje, kako bi proizveli što optimizovaniji izvorni kod, ali tu nastaju novi problemi. 
-Niz transformacija koji daje dobre rezultate na jednoj arhitekturi i za jedan tip algoritamskog problema, na drugoj arhitekturi i za drugi tip problema može proizvesti rezultat koji je lošiji od neoptimizovanog rešenja.
+Moderni programski prevodioci uglavnom primenjuju neke statičke tehnike optimizacije, primenjujući različite 
+\emph{transformacije} koda koje čuvaju semantičko značenje, kako bi proizveli što optimizovaniji izvorni kod, ali tu nastaju novi problemi. 
+Niz transformacija koji daje dobre rezultate na jednoj arhitekturi i za jedan tip algoritamskog problema, 
+na drugoj arhitekturi i za drugi tip problema može proizvesti rezultat koji je lošiji od neoptimizovanog rešenja.
 Rešenje ovog problema se nazire u konfigurabilnosti redosleda i ulaznih parametara ovih transformacija.
 \par
-U ovom radu opisujemo jedan pristup optimizaciji u procesu prevođenja koji je nezavisan od platforme i arhitekture. Suština ove metode prevođenja je u dodatnom sloju koji se nalazi između izvornog koda i prevodioca. Svrha tog sloja je da proizvede optimizovaniji \emph{izvorni k\^{o}d} koji se zatim prosleđuje 
+U ovom radu opisujemo jedan pristup optimizaciji u procesu prevođenja koji je nezavisan od platforme i arhitekture. 
+Suština ove metode prevođenja je u dodatnom sloju koji se nalazi između izvornog koda i prevodioca. 
+Svrha tog sloja je da proizvede optimizovaniji \emph{izvorni k\^{o}d} koji se zatim prosleđuje 
 prevodiocu. Kako postoje različiti načini transformacije jednog izvornog koda u drugi, i kako ne postoji jedan statički niz transformacija i njihovih konfiguracija koji bi dao optimalne rezultate za sve probleme i platforme, 
-jasno je da odabir transformacija i ulazne parametre tih tranformacija moramo odabirati naći nekakvom pametnom pretragom. Taj proces pretrage parametara nazivamo \emph{"Iterativna kompilacija"}.
+jasno je da odabir transformacija i ulazne parametre tih tranformacija moramo odabirati naći nekakvom pametnom pretragom. 
+Taj proces pretrage parametara nazivamo \emph{"Iterativna kompilacija"}.
 \par
 Ovaj rad organizovan je na sledeći način. 
-U odeljku \ref{sec:tehnike} opisujemo neke od transformacija izvornog koda koje je moguće koristiti pri optimizaciji. 
+U odeljku \ref{sec:transformacije} opisujemo neke od transformacija izvornog koda koje je moguće koristiti pri optimizaciji. 
 Koncentrišemo se (naravno) na one transformacije koje su konfigurabilne. Pokazujemo na koji način ove transformacije utiču na performanse i kako se mogu kombinovati. 
-U odeljku \ref{sec:tehnike} poredimo različite metode pretrage ulaznih parametara niza transformacija.
+U odeljku \ref{sec:pretraga} poredimo različite metode pretrage ulaznih parametara niza transformacija.
 U odeljku \ref{sec:performanse} poredimo performanse programa prevedenih na ovaj način kroz različite repere i realne programe, i poredimo potrošnju energije tih programa.
 Konačno, dajemo zaključak na osnovu rezultata merenja performansi i potrošnje energije u odeljku \ref{sec:zakljucak}.
 
 
-\section{Tehnike optimizacije}
-\label{sec:tehnike}
+\section{Metode transformacija}
+\label{sec:transformacije}
 
-Slike i tabele treba da budu u svom okruženju, sa odgovarajućim naslovima, obeležene labelom da koje omogućava referenciranje. 
-
-\begin{primer} Ovako se ubacuje slika. Obratiti pažnju da je dodato i 
-\begin{verbatim}
-\usepackage{graphicx}
-\end{verbatim}
-
-\begin{figure}[h!]
-\begin{center}
-% [TODO: staviti placeholder za sliku] \includegraphics[scale=0.75]{panda.jpg}
-\end{center}
-\caption{Pande}
-\label{fig:pande}
-\end{figure}
-
-Na svaku sliku neophodno je referisati se negde u tekstu. Na primer, na slici \ref{fig:pande} prikazane su pande. 
-\end{primer}
-
-\begin{primer} I tabele treba da budu u svom okruženju, i na njih je neophodno referisati se u tekstu. Na primer, u tabeli \ref{tab:tabela1} su prikazana različita poravnanja u tabelama.
-
-\begin{table}[h!]
-\begin{center}
-\caption{Razlčita poravnanja u okviru iste tabele ne treba koristiti jer su nepregledna.}
-\begin{tabular}{|c|l|r|} \hline
-centralno poravnanje& levo poravnanje& desno poravnanje\\ \hline
-a &b&c\\ \hline
-d &e&f\\ \hline
-\end{tabular}
-\label{tab:tabela1}
-\end{center}
-\end{table}
-
-\end{primer}
-
-\subsection{Tehnike optimizacije petlji}
-\subsubsection{Odmotavanje petlji}
-\subsubsection{Popločavanje petlji}
-\subsubsection{Neka treća optimizacija}
-
-\subsection{Odabir ulaznih parametara}
-
-
+\section{Pretraga ulaznih parametara}
+\label{sec:pretraga}
 
 \section{Performanse}
 \label{sec:performanse}
 
-
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-
-
-\subsection{Statičke metode}
-\label{subsec:podnaslov1}
-
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-
-\subsection{Metode testiranja iterativne kompilacije}
-\label{subsec:podnaslov2}
-
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-
-\subsection{Rezultati izvršavanja nad reperima}
-\label{subsec:podnaslov3}
-
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-
 \section{Zaključak}
 \label{sec:zakljucak}
 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
 
 
 %\addcontentsline{toc}{section}{Literatura}
