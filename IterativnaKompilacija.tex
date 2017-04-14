@@ -53,21 +53,20 @@ da na gotovo isti (ili veoma sličan) način i sa istim alatima i jezicima razvi
 naprednije mogućnosti modernih arhitektura procesora. Korišćenjem samo osnovnih hardverskih funkcionalnosti procesora dolazimo do programa koju su veoma malo (ako uopšte) optimizovani.
 
 \par 
-Moderni programski prevodioci uglavnom primenjuju neke statičke tehnike optimizacije, primenjujući različite transformacije koda koje čuvaju semantičko značenje, kako bi proizveli što optimizovaniji izvorni kod, ali tu nastaju novi problemi. 
+Moderni programski prevodioci uglavnom primenjuju neke statičke tehnike optimizacije, primenjujući različite \emph{transformacije} koda koje čuvaju semantičko značenje, kako bi proizveli što optimizovaniji izvorni kod, ali tu nastaju novi problemi. 
 Niz transformacija koji daje dobre rezultate na jednoj arhitekturi i za jedan tip algoritamskog problema, na drugoj arhitekturi i za drugi tip problema može proizvesti rezultat koji je lošiji od neoptimizovanog rešenja.
 Rešenje ovog problema se nazire u konfigurabilnosti redosleda i ulaznih parametara ovih transformacija.
 \par
-U ovom radu opisujemo jedan pristup optimizaciji koji je nezavisan od platforme i arhitekture. Suština ovog je pristupa je u dodatnom sloju pri prevođenju 
-sofvera za specifičnu platformu koji se nalazi između izvornog koda i prevodioca. Svrha tog sloja je da proizvede optimizovaniji \emph{izvorni k\^{o}d} koji se zatim prosleđuje 
-kompajleru. Kako postoje različiti načini transformacije jednog izvornog koda u drugi, i kako ne postoji jedan statički niz transformacija i njihovih konfiguracija koji bi dao optimalne rezultate za sve probleme i platforme, 
+U ovom radu opisujemo jedan pristup optimizaciji u procesu prevođenja koji je nezavisan od platforme i arhitekture. Suština ove metode prevođenja je u dodatnom sloju koji se nalazi između izvornog koda i prevodioca. Svrha tog sloja je da proizvede optimizovaniji \emph{izvorni k\^{o}d} koji se zatim prosleđuje 
+prevodiocu. Kako postoje različiti načini transformacije jednog izvornog koda u drugi, i kako ne postoji jedan statički niz transformacija i njihovih konfiguracija koji bi dao optimalne rezultate za sve probleme i platforme, 
 jasno je da odabir transformacija i ulazne parametre tih tranformacija moramo odabirati naći nekakvom pametnom pretragom. Taj proces pretrage parametara nazivamo \emph{"Iterativna kompilacija"}.
 \par
 Ovaj rad organizovan je na sledeći način. 
 U odeljku \ref{sec:tehnike} opisujemo neke od transformacija izvornog koda koje je moguće koristiti pri optimizaciji. 
 Koncentrišemo se (naravno) na one transformacije koje su konfigurabilne. Pokazujemo na koji način ove transformacije utiču na performanse i kako se mogu kombinovati. 
 U odeljku \ref{sec:tehnike} poredimo različite metode pretrage ulaznih parametara niza transformacija.
-U odeljku \ref{sec:performanse} poredimo performanse programa prevedenih na ovaj način kroz različite repere, ali i realne programe.
-Konačno, dajemo zaključak na osnovu rezultata merenja performansi u odeljku \ref{sec:zakljucak}.
+U odeljku \ref{sec:performanse} poredimo performanse programa prevedenih na ovaj način kroz različite repere i realne programe, i poredimo potrošnju energije tih programa.
+Konačno, dajemo zaključak na osnovu rezultata merenja performansi i potrošnje energije u odeljku \ref{sec:zakljucak}.
 
 
 \section{Tehnike optimizacije}
