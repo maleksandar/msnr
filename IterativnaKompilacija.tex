@@ -9,6 +9,29 @@
 \usepackage{graphicx}
 \graphicspath{ {Slike/} }
 
+\usepackage{listings}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
 \usepackage[english,serbian]{babel}
 %\usepackage[english,serbianc]{babel} %ukljuciti babel sa ovim opcijama, umesto gornjim, ukoliko se koristi cirilica
 
@@ -20,7 +43,7 @@
 
 \title{Optimizacija programa kroz različite pristupe Iterativnoj Kompilaciji\\ \small{Seminarski rad u okviru kursa\\Metodologija stručnog i naučnog rada\\ Matematički fakultet}}
 
-\author{Filip Novović, Aleksandar Preočanin, Aleksandar Milosavljević\\ [!!!], preocanin.aleksandar@gmail.com, alemilosav@gmail.com }
+\author{Filip Novović, Aleksandar Preočanin, Aleksandar Milosavljević\\ filipn@post.com, preocanin.aleksandar@gmail.com, alemilosav@gmail.com }
 \date{14.~april 2017.}
 \maketitle
 
@@ -75,6 +98,91 @@ Konačno, dajemo zaključak na osnovu rezultata merenja performansi i potrošnje
 
 \section{Metode transformacija}
 \label{sec:transformacije}
+
+\textbf{Odmotavanje petlji} (eng. loop unrolling) - Koristi se za smanjivanje vremena koje je potrebno za
+izvršavanje petlje po cenu povećavanja veličine koda koji joj odgovara. Cilj je da se u petlji
+smanji broj instrukcija koje se vezuju za kontrolu toka petlje. Odmotavanje petlji obično ima
+veliki doprinos kada u telu petlje postoje naredbe koje su nezavisne, odnosno mogu da se
+paralelno izvršavaju. Ovo se ostvaruje pružanjem većeg broja instrukcija hardveru nego u 
+slučaju originalnog koda.
+
+\begin{lstlisting}
+ int x;
+ for (x = 0; x < 100; x++)
+ {
+     delete(x);
+ }
+\end{lstlisting}
+
+\begin{lstlisting}
+ int x; 
+ for (x = 0; x < 100; x += 5)
+ {
+     delete(x);
+     delete(x + 1);
+     delete(x + 2);
+     delete(x + 3);
+     delete(x + 4);
+ }
+\end{lstlisting}
+
+
+\textbf{Podela na blokove} (eng. loop tiling) - Telo petlje se deli na manje blokove kako bi se osiguralo
+da lokalni podaci koji se u njemu koriste ostaju u keš memoriji sve dok ne budu opet bili potrebni.
+Doprinos se ogleda u smanjenom broju promašaja keš memorije, kao i energije memorijskog sistema koja
+bi bila utrošena na prikupljanje podataka sa alternativnih izvora.
+
+\begin{lstlisting}
+  int i, j, a[100][100], b[100], c[100];
+  int n = 100;
+  for (i = 0; i < n; i++) {
+    c[i] = 0;
+    for (j = 0; j < n; j++) {
+      c[i] = c[i] + a[i][j] * b[j];
+    }
+  }
+\end{lstlisting}
+
+\begin{lstlisting}
+  int i, j, x, y, a[100][100], b[100], c[100];
+  int n = 100;
+  for (i = 0; i < n; i += 2) {
+    c[i] = 0;
+    c[i + 1] = 0;
+    for (j = 0; j < n; j += 2) {
+      for (x = i; x < min(i + 2, n); x++) {
+        for (y = j; y < min(j + 2, n); y++) {
+          c[x] = c[x] + a[x][y] * b[y];
+        }
+      }
+    }
+  }
+\end{lstlisting}
+
+\textbf{Podela petlji} (eng. loop fission) deli telo petlje na dve ili više različitih petlji. Doprinos je u ovom slučaju smanjenje broja promašaja instrukcijske keš memorije i stvaranje mogućnosti da se, ukoliko su tela novonastalih petlji dovoljno mala, koriste baferi petlji (eng. loop buffer) \footnote{Bafer petlje je mala, jako brza memorija koja čuva određen broj vremenski skoro korišćenih naredbi. Ukoliko je bafer petlje dovoljno veliki da sadrži sve naredbe tela petlje, onda je potrebno samo jednom uzeti te informacije iz memorije, i to pri prvoj iteraciji \cite{stallings2000computer}} Negativne posledice podele petlji su povećana potreba za energijom memorijskog sistema usled smanjenja vremenske lokalnosti podataka (eng. temporal locality) .
+
+
+\begin{lstlisting}
+  int i, a[100], b[100];
+  for (i = 0; i < 100; i++)
+  {
+    a[i] = 1; 
+    b[i] = 2;
+  }
+\end{lstlisting}
+
+\begin{lstlisting}
+  int i, a[100], b[100];
+  for (i = 0; i < 100; i++)
+    a[i] = 1;                     
+  for (i = 0; i < 100; i++)
+    b[i] = 2;
+\end{lstlisting}
+
+\textbf{Spajanje petlji} (eng. loop fusion) predstavlja transformaciju suprotnu podele petlji. Kombinuje tela dve ili više petlji koje imaju iste
+granice u jednu. Ukoliko petlje koje spajamo koriste iste podatke, ovom transformacijom povećavamo
+njihovu lokalnost. Smanjenjem broja instrukcija koje se koriste za logiku kontrole toka se 
+umanjuje i potrebna ukupna procesorska energija.
 
 \section{Pretraga ulaznih parametara}
 \label{sec:pretraga}
