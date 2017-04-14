@@ -7,12 +7,14 @@
 \usepackage[T2A]{fontenc} % enable Cyrillic fonts
 \usepackage[utf8]{inputenc} % make weird characters work
 \usepackage{graphicx}
+\graphicspath{ {Slike/} }
 
 \usepackage[english,serbian]{babel}
 %\usepackage[english,serbianc]{babel} %ukljuciti babel sa ovim opcijama, umesto gornjim, ukoliko se koristi cirilica
 
 \usepackage[unicode]{hyperref}
 \hypersetup{colorlinks,citecolor=green,filecolor=green,linkcolor=blue,urlcolor=blue}
+
 
 \begin{document}
 
@@ -79,6 +81,54 @@ Konačno, dajemo zaključak na osnovu rezultata merenja performansi i potrošnje
 
 \section{Performanse}
 \label{sec:performanse}
+    Treba dodati uvod...
+
+\subsection{Performanse Podnaslov 1}
+\label{sec:perpod1}
+    Treba neki uvod...
+\newline Tehnike koje su korišćene pri optimizaciji:
+\begin{enumerate}
+\item Podela na blokove, gde su veličine blokova od 1 do 100
+\item Odmotavanje petlje, gde je faktor odmotavanja od 1 do 20
+\item ?Array padding?, with pad sizes 1 to 10
+\end{enumerate}
+Reperi koji su korišćeni za testiranje optimizacija:
+\begin{enumerate}
+\item Množenje matrica (MxM), veličine podataka 256, 300 i 301
+\item Množenje matrica i vektora (MxV), veličine podataka 2048, 2300 i 2301 
+\item Metod relaksacije (.eng Successive over-relaxation, SOC), veličine podataka 128, 150 i 151
+\item Direkta diskretna kosinusna transformacija (.eng Forward Discrete Cosine Transform, FDCT), veličine podataka 256, 300 i 301
+\item Rutina za kompenzaciju pokreta (.eng Motion compensation rutine, RECO), veličine podataka 2048, 2300 i 2301
+\end{enumerate}
+    Performanse su testirane na nekoliko različitih načina. 
+Prvi način testiranja je takav da se pretraga u okviru iterativne kompilacije izvrsava na 
+fiksiranoj veličini ulaznih podataka. Prevođenje je rađeno odvojeno nad dva skupa
+optimizacionih tehnika. Prvi skup čine tehnike 1. i 2. a drugi skup čine sve tri tehnike. Poboljšanje performansi 
+tako prevedenih programa su prikazane na slikama \ref{fig:slika1} gde je koršćen prvi skup tehnika i 
+\ref{fig:slika2} gde je korišćen drugi skup tehnika. Iz rezultata prikazanih na Slici \ref{fig:slika1} vidimo da
+je došlo do poboljšanja u brzini izvršavanja čak i do 3.4 puta. Možemo primetiti i da pretraga pronalazi 
+dobro rešenje veoma brzo, unutar 50 iteracija u svim slučajevima sem MxM i SOR
+ubrzanje programa je blizu maksimuma. Za MxM i SOR se tek nakon više od 100 iteracija dolazi do značajnog poboljšanja.
+Ako uporedimo rezultate sa Slike \ref{fig:slika1} i Slike \ref{fig:slika2} vidimo da se približno ista poboljšanja
+u brzni dobijaju u okviru istog broja iteracija iako se korišćenjem drugog skupa tehnika povećava prostor pretrage.
+U slučaju MxV se nakon 350 iteracija dobija bolje rešenje u odnosu na rešenje dobijeno korišćenjem prvog skupa optimizacija.
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=\textwidth]{performanse1}
+\end{center}
+\caption{Poboljšanje performansi korišćenjem Odmotavanja i Podele na blokove}
+\label{fig:slika1}
+\end{figure}
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=\textwidth]{performanse2}
+\end{center}
+\caption{Poboljšanje performansi korišćenjem Odmotavanja, Podele na blokove i Array padding-a}
+\label{fig:slika2}
+\end{figure}
+
 
 \section{Zaključak}
 \label{sec:zakljucak}
