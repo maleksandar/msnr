@@ -97,6 +97,8 @@ Konačno, dajemo zaključak na osnovu rezultata merenja performansi i potrošnje
 \section{Metode transformacija}
 \label{sec:transformacije}
 
+Optimizacija kompilatora za cilj ima da minimizuje ili maksimizuje određena svojstva izvršnog koda programa (npr. potrebnu procesorsku energija) i obično se implementira u obliku niza optimizacionih transformacija. Transformacije su izmene koje se vrše nad kodom kako bi se dobile željene performanse pri njegovom izvršavanju uz uslov da izmenjen kod mora da bude semantički ekvivalentan originalnom. Optimizacija petlji je veoma značajna zato što je procenat vremena koje programi pri izvršavanju provode u petljama veliki. Iz tog razloga ćemo se u ovom poglavlju većim delom koncentrisati na njima.  \\
+
 \textbf{Odmotavanje petlji} (eng. loop unrolling) - Koristi se za smanjivanje vremena koje je potrebno za
 izvršavanje petlje po cenu povećavanja veličine koda koji joj odgovara. Cilj je da se u petlji
 smanji broj instrukcija koje se vezuju za kontrolu toka petlje. Odmotavanje petlji obično ima
