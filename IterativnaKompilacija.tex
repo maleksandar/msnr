@@ -213,13 +213,17 @@ Prostor pretrage (eng. search space) sadrži različite kombinacije parametara z
 
 \textbf{Pretraga mreže} (eng. grid search). Predstavlja tradicionalni pristup problemu optimizacije većeg broja parametara (eng. hyperparameter optimization). Sastoji se od generisanja različitih tačaka unutar mreže koje su u stvari kombinacije različitih vrednosti parametara. Ove tačke se testiraju i dalji rad algoritma pretrage se fokusira na prostor u okolini tačaka koje su se pokazale kao efikasne u tom trenutku. Grafički prikaz mreže tačaka i regiona polja pretrage koji su nam od značaja se može videti na Slika \ref{fig:grid} \\
 
-
+\begin{figure}[h]
+\includegraphics[scale=0.75]{grid.png}
+\caption{Prikaz različitih kombinacija vrednosti atributa u vidu tačaka mreže}
+\label{fig:slika1}
+\end{figure}
 
 \textbf{Slučajna pretraga} (eng. random search). Parametri se generišu slučajnim izborom.
 
 \section{Performanse}
 \label{sec:performanse}
-Optimizovanje programa u okviru satička kompilacije se zasniva na proceni poboljšanja 
+Optimizovanje programa u okviru statičke kompilacije se zasniva na proceni poboljšanja 
 bez da se prethodno program izvrši(različiti redosledi optimizacija daju različite rezultate). 
 Odluka da nekoj transformaciji treba dati prednost u odnosu na drugu, kod statičke kompilacije,
 donosi si se na osnovu predefinisanog skupa ocena. Lako je zaključiti da primenom iterativne kompilacije 
@@ -248,12 +252,12 @@ Programi su prevođeni na 2 načina.
 Prvi način prevođenja je takav da se pretraga u okviru iterativne kompilacije izvršva na 
 fiksiranoj veličini ulaznih podataka. Prevođenje je rađeno odvojeno nad dva skupa
 optimizacionih tehnika. Prvi skup čine tehnike 1. i 2. a drugi skup čine sve tri tehnike. Poboljšanje performansi 
-tako prevedenih programa je prikazano na slikama \ref{fig:slika1} gde je koršćen prvi skup optimizacionih tehnika i 
-\ref{fig:slika2} gde je korišćen drugi skup optimizacionih tehnika. Iz rezultata prikazanih na slici \ref{fig:slika1} vidimo da
+tako prevedenih programa je prikazano na slikama \ref{fig:slika2} gde je koršćen prvi skup optimizacionih tehnika i 
+\ref{fig:slika3} gde je korišćen drugi skup optimizacionih tehnika. Iz rezultata prikazanih na slici \ref{fig:slika2} vidimo da
 je došlo do poboljšanja u brzini izvršavanja čak i do 3.4 puta. Možemo primetiti i da pretraga pronalazi 
 dobro rešenje veoma brzo, unutar 50 iteracija u svim slučajevima ubrzanje programa je blizu maksimuma
 , osim u slučaju MxM i SOR. Kod MxM i SOR se tek nakon više od 100 iteracija dolazi do značajnog poboljšanja.
-Ako uporedimo rezultate sa Slike \ref{fig:slika1} i Slike \ref{fig:slika2} vidimo da se približno ista poboljšanja
+Ako uporedimo rezultate sa Slike \ref{fig:slika2} i Slike \ref{fig:slika3} vidimo da se približno ista poboljšanja
 u brzni dobijaju u okviru istog broja iteracija iako se korišćenjem drugog skupa optimizacija povećava prostor 
 pretrage. U slučaju MxV se nakon 350 iteracija dobija bolje rešenje u odnosu na rešenje dobijeno korišćenjem prvog skupa 
 optimizacija.
@@ -263,7 +267,7 @@ optimizacija.
 \includegraphics[width=\textwidth]{performanse1}
 \end{center}
 \caption{Poboljšanje performansi korišćenjem Odmotavanja i Podele na blokove}
-\label{fig:slika1}
+\label{fig:slika2}
 \end{figure}
 
 \begin{figure}[p]
@@ -271,7 +275,7 @@ optimizacija.
 \includegraphics[width=\textwidth]{performanse2}
 \end{center}
 \caption{Poboljšanje performansi korišćenjem Odmotavanja, Podele na blokove i Popunjavanja niza}
-\label{fig:slika2}
+\label{fig:slika3}
 \end{figure}
 
 Prvi način prevodjenja je pokazao da su za fiksiranu veličinu ulaznih podataka preformanse dobijenih programa značajno poboljšane.
@@ -279,7 +283,7 @@ U praksi naš program se neće izvršavati stalno nad ulaznim podacima koji su i
 pri kompilaciji, pa se iz tog razloga pristupilo i drugom načinu kompilacije. Kod drugog načina kopajliranja 
 koriste se sve tehnike transformacije, a reperi koji se koriste za testiranje su MxM, MxV, FDCT i RECO.
 Pretraga u okviru kompilacije će se izvršavti nad više različitih ulaznih podataka gde će se kao mera kvaliteta uzimati
-srednja vrednost dobijenih rezultata. Na slici \ref{fig:slika3} prikazani su dobijeni rezultati.
+srednja vrednost dobijenih rezultata. Na slici \ref{fig:slika4} prikazani su dobijeni rezultati.
 Crnom bojom su prikazani rezultati dobijeni prvim načinom kompilacije. Sivom bojom su prikazani rezultati dobijeni
 drugim načinom kompilacije s tim što su veličine ulaznih podataka sledeće:
 \begin{itemize}
@@ -300,9 +304,10 @@ ulaznih podataka brži od programa dobijenim prilikom prevodjenja sa fiksiranom 
 \begin{figure}[h]
 \includegraphics[scale=0.5]{performanse3}
 \caption{Poredjenje poboljšanja performansi}
-\label{fig:slika3}
+\label{fig:slika4}
 \end{figure}
 
+\newpage
 \section{Zaključak}
 \label{sec:zakljucak}
 U ovom radu opisali smo tehniku iterativne kompilacije. 
