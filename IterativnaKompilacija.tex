@@ -41,15 +41,25 @@
 
 \begin{document}
 
-\title{Optimizacija programa kroz različite pristupe Iterativnoj Kompilaciji\\ \small{Seminarski rad u okviru kursa\\Metodologija stručnog i naučnog rada\\ Matematički fakultet}}
+\title{Optimizacija izvršavanja programa kroz Iterativnu Kompilaciju\\ \small{Seminarski rad u okviru kursa\\Metodologija stručnog i naučnog rada\\ Matematički fakultet}}
 
 \author{Filip Novović, Aleksandar Preočanin, Aleksandar Milosavljević\\ filipn@post.com, preocanin.aleksandar@gmail.com, alemilosav@gmail.com }
 \date{14.~april 2017.}
 \maketitle
 
-\abstract{
-U ovom tekstu je ukratko prikazana osnovna forma seminarskog rada. Obratite pažnju da je pored ove .pdf datoteke, u prilogu i odgovarajuća .tex datoteka, kao i .bib datoteka korišćena za generisanje literature. Na prvoj strani seminarskog rada su naslov, apstrakt i sadržaj, i to sve mora da stane na prvu stranu! Kako bi Vaš seminarski zadovoljio standarde i očekivanja, koristite uputstva i materijale sa predavanja na temu pisanja seminarskih radova. Ovo je samo šablon koji se odnosi na fizički izgled seminarskog rada (šablon koji \emph{morate} da ispoštujete!) kao i par tehničkih pomoćnih uputstava. Molim Vas da kada budete predavali seminarski rad, imenujete datoteke tako da sadrže temu seminarskog rada, kao i imena i prezimena članova grupe (ili samo temu i prezimena, ukoliko je sa imenima predugačko). Predaja seminarskih radova biće isključivo preko web forme, a NE slanjem mejla.
-
+\abstract {
+  U ovom radu opisujemo metod \emph{iterativne kompilacije} 
+  i motivaciju za njeno korišćenje. Objašnjavamo suštinu ovog pristupa optimizaciji, kao i zbog čega 
+  je primenjiv na bilo koju arhitekturu ili algoritamski problem. 
+  Dajemo uporedne podatke o brzini izvršavanja 
+  iterativno kompajliranih programa sa programima kompajliranim na statički način.
+  Zatim, opisujemo neke od čestih tehnika 
+  statičke optimizacije petlji i efikasnog korišćenja keš memorije i 
+  razjašnjavamo kako nam one mogu biti korisne u iterativnoj tehnici prevođenja programa.
+  Otkrivamo kako izabrati najbolje od tih tehnika uz korišćenje najboljih 
+  parametara za dati problem i arhitekturu.
+  Konačno, upoređujemo potrošnju energije ovakvih programa sa potrošnjom energije statički kompajliranih programa.
+}
 \tableofcontents
 
 \newpage
@@ -78,7 +88,7 @@ naprednije mogućnosti modernih arhitektura procesora. Korišćenjem samo osnovn
 Moderni programski prevodioci uglavnom primenjuju neke statičke tehnike optimizacije, primenjujući različite 
 \emph{transformacije} koda koje čuvaju semantičko značenje, kako bi proizveli što optimizovaniji izvorni kod, ali tu nastaju novi problemi. 
 Niz transformacija koji daje dobre rezultate na jednoj arhitekturi i za jedan tip algoritamskog problema, 
-na drugoj arhitekturi i za drugi tip problema može proizvesti rezultat koji je lošiji od neoptimizovanog rešenja.
+na drugoj arhitekturi i za drugi tip problema može proizvesti rezultat koji je lošiji od neoptimizovanog rešenja \cite{gheorghita2005iterative}.
 Rešenje ovog problema se nazire u konfigurabilnosti redosleda i ulaznih parametara ovih transformacija.
 \par
 U ovom radu opisujemo jedan pristup optimizaciji u procesu prevođenja koji je nezavisan od platforme i arhitekture. 
@@ -291,9 +301,30 @@ dobijenim prvim načinom testiranja.
 
 \section{Zaključak}
 \label{sec:zakljucak}
-
-
-
+U ovom radu opisali smo tehniku iterativne kompilacije. 
+Pokazali smo da ova tehnika u mnogim situacijama dovodi 
+do značajnih ubrzanja i da su u gotovo svim situacijama 
+programi optimizovani iterativnom kompilacijom značajno 
+brži od programa komajliranih statičkim metodama, kao i da koriste
+značajno manje energije.
+\par
+Na osnovu načina traganja za najboljim transformacijama 
+i najboljim ulaznim parametrima za te optimizacije možemo da zaključimo
+da iako je izvršavanje programa prevedenih ovom tehnikom brže
+od statički prevedenih ekvivalenata, sam čin prevođenja je značajno sporiji. 
+Upravo zbog toga ovaj metod prevođenja nije pogodan za vreme samog
+razvijanja softvera, 
+ali je više nego poželjan za primenu na verzijama softvera prevedenih 
+i spremljenih za isporuku.
+\par
+Značaj ove tehnike može imati izuzetnog uticaja
+na efikasnost uređaja u svetu \emph{interneta stvari} (eng. \emph{Internet Of Things}) 
+gde većina uređaja ima ograničenu dostupnost električne energije, kao i u svetu 
+mobilnih uređaja.
+\par
+Nadamo se da će sa kompajlerima koji se budu razvijali u budućnosti u paketu 
+dolaziti i mnoge optimizacione tehnike i alati među kojima ćemo videti i
+neke varijante iterativne kompilacije.
 \addcontentsline{toc}{section}{Literatura}
 \appendix
 \bibliography{seminarski} 
