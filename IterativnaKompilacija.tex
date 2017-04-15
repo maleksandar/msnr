@@ -111,7 +111,7 @@ Konačno, dajemo zaključak na osnovu rezultata merenja performansi i potrošnje
 
 Optimizacija kompilatora ima za cilj da minimizuje ili maksimizuje određena svojstva izvršnog koda programa (npr. potrebnu procesorsku energiju) i obično se implementira u obliku niza optimizacionih transformacija. Transformacije su izmene koje se vrše nad kodom kako bi se dobile željene performanse pri njegovom izvršavanju uz uslov da izmenjen kod mora da bude semantički ekvivalentan originalnom. Optimizacija petlji je veoma značajna zato što je procenat vremena koje programi pri izvršavanju provode u petljama veliki. Iz tog razloga ćemo se u ovom poglavlju većim delom koncentrisati na njih.  \\
 
-\textbf{Odmotavanje petlji} (eng. loop unrolling) - Koristi se za smanjivanje vremena koje je potrebno za
+\textbf{Odmotavanje petlji} (eng. loop unrolling). Koristi se za smanjivanje vremena koje je potrebno za
 izvršavanje petlje po cenu povećavanja veličine koda koji joj odgovara. Cilj je da se u petlji
 smanji broj instrukcija koje se vezuju za kontrolu toka petlje. Odmotavanje petlji obično ima
 veliki doprinos kada u telu petlje postoje naredbe koje su nezavisne, odnosno mogu da se
@@ -140,7 +140,7 @@ i verzija u kojoj je upotrebljeno odmotavanje:
 \end{lstlisting}
 
 
-\textbf{Podela na blokove} (eng. loop tiling) - Telo petlje se deli na manje blokove kako bi se osiguralo
+\textbf{Podela na blokove} (eng. loop tiling). Telo petlje se deli na manje blokove kako bi se osiguralo
 da lokalni podaci koji se u njemu koriste ostaju u keš memoriji sve dok ne budu opet bili potrebni.
 Doprinos se ogleda u smanjenom broju promašaja keš memorije, kao i energije memorijskog sistema koja
 bi bila utrošena na prikupljanje podataka sa alternativnih izvora.\\
@@ -173,7 +173,7 @@ i njemu odgovarajuća verzija koja deli prostor iteracije na blokove:
   }
 \end{lstlisting}
 
-\textbf{Podela petlji} (eng. loop fission) deli telo petlje na dve ili više različitih petlji. Doprinos je u ovom slučaju smanjenje broja promašaja instrukcijske keš memorije i stvaranje mogućnosti da se, ukoliko su tela novonastalih petlji dovoljno mala, koriste baferi petlji (eng. loop buffer) \footnote{Bafer petlje je mala, jako brza memorija koja čuva određen broj vremenski skoro korišćenih naredbi. Ukoliko je bafer petlje dovoljno veliki da sadrži sve naredbe tela petlje, onda je potrebno samo jednom uzeti te informacije iz memorije, i to pri prvoj iteraciji \cite{stallings2000computer}} Negativne posledice podele petlji su povećana potreba za energijom memorijskog sistema usled smanjenja vremenske lokalnosti podataka (eng. temporal locality).\\
+\textbf{Podela petlji} (eng. loop fission). Telo petlje se deli na dve ili više različitih petlji. Doprinos je u ovom slučaju smanjenje broja promašaja instrukcijske keš memorije i stvaranje mogućnosti da se, ukoliko su tela novonastalih petlji dovoljno mala, koriste baferi petlji (eng. loop buffer) \footnote{Bafer petlje je mala, jako brza memorija koja čuva određen broj vremenski skoro korišćenih naredbi. Ukoliko je bafer petlje dovoljno veliki da sadrži sve naredbe tela petlje, onda je potrebno samo jednom uzeti te informacije iz memorije, i to pri prvoj iteraciji \cite{stallings2000computer}} Negativna posledica podele petlji je povećana potreba za energijom memorijskog sistema usled smanjenja vremenske lokalnosti podataka (eng. temporal locality).\\
 Primer petlje u kojoj vršimo dve naredbe:
 \begin{lstlisting}
   int i, a[100], b[100];
@@ -192,7 +192,7 @@ koju delimo na dve petlje sa po jednom naredbom koje imaju isti opseg:
     b[i] = 2;
 \end{lstlisting}
 
-\textbf{Spajanje petlji} (eng. loop fusion) predstavlja transformaciju suprotnu podeli petlji. Kombinuje tela dve ili više petlji koje imaju iste
+\textbf{Spajanje petlji} (eng. loop fusion). Predstavlja transformaciju suprotnu podeli petlji. Kombinuje tela dve ili više petlji koje imaju iste
 granice u jednu. Ukoliko petlje koje spajamo koriste iste podatke, ovom transformacijom povećavamo
 njihovu lokalnost. Smanjenjem broja instrukcija koje se koriste za logiku kontrole toka umanjuje se 
 i potrebna ukupna procesorska energija.\\
