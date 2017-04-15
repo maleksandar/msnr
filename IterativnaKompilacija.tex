@@ -63,16 +63,16 @@ do uređaja čije se korišćenje podrazumeva u svakodnevnom radu čoveka. Broj 
 Od mobilnih telefona, preko prenosnih računara, pa sve do pametnih veš-mašina, računari su postali sastavni (vrlo često i centralni) deo uređaja za koje, 
 do pre samo par godina, nismo mogli ni da pretpostavimo da će postati "pametni".
 \par
-Ovaj fenomen eksplozije broja računara i njegovih primena deoveo je do nekih logičnih posledica. 
+Ovaj fenomen eksplozije broja računara i njegovih primena doveo je do nekih logičnih posledica. 
 Arhitektura procesora od uređaja do uređaja postala je izuzetno šarolika. Zahtevi za uštedom memorije, procesorskog vremena i energije (struje) postali su primarni na uređajima koji nisu 
 (i ne mogu biti) na konstantnom izvoru napajanja. Optimizacija je ponovo postala ključni deo problema u razvoju softvera. 
 
 \par
-Sa druge strane postoji velika potražnja za softverom koji rešava raznovrsne problema, a koji se pritom izvršava na još raznorodnijim arhitekturama i platformama.
-Veliki broj problema koji može biti rešen softverski sa jedne strane i nedovoljan broj razvijaoca softvera sa druge nam govori da je brz razvoj sofvera neophodan kako bi svi problemi 
+Sa druge strane postoji velika potražnja za softverom koji rešava raznovrsne probleme, a koji se pritom izvršava na još raznorodnijim arhitekturama i platformama.
+Veliki broj problema koji može biti rešen softverski sa jedne strane i nedovoljan broj razvijalaca softvera sa druge nam govori da je brz razvoj sofvera neophodan kako bi svi problemi 
 mogli da se reše u razumnom roku. Način na koji industrija odgovara na taj izazov godinama unazad bio je uopštavanje arhitekture računara koji je omogućio razvijaocima softvera 
 da na gotovo isti (ili veoma sličan) način i sa istim alatima i jezicima razvijaju softver za veoma različite platforme. Posledica takvog pristupa je da uopšteni model arhitekture gotovo uvek zanemaruje 
-naprednije mogućnosti modernih arhitektura procesora. Korišćenjem samo osnovnih hardverskih funkcionalnosti procesora dolazimo do programa koju su veoma malo (ako uopšte) optimizovani.
+naprednije mogućnosti modernih arhitektura procesora. Korišćenjem samo osnovnih hardverskih funkcionalnosti procesora dolazimo do programa koji su veoma malo (ako i uopšte) optimizovani.
 
 \par 
 Moderni programski prevodioci uglavnom primenjuju neke statičke tehnike optimizacije, primenjujući različite 
@@ -85,7 +85,7 @@ U ovom radu opisujemo jedan pristup optimizaciji u procesu prevođenja koji je n
 Suština ove metode prevođenja je u dodatnom sloju koji se nalazi između izvornog koda i prevodioca. 
 Svrha tog sloja je da proizvede optimizovaniji \emph{izvorni k\^{o}d} koji se zatim prosleđuje 
 prevodiocu. Kako postoje različiti načini transformacije jednog izvornog koda u drugi, i kako ne postoji jedan statički niz transformacija i njihovih konfiguracija koji bi dao optimalne rezultate za sve probleme i platforme, 
-jasno je da odabir transformacija i ulazne parametre tih tranformacija moramo odabirati naći nekakvom pametnom pretragom. 
+jasno je da odabir transformacija i ulazne parametre tih transformacija moramo naći nekakvom pametnom pretragom. 
 Taj proces pretrage parametara nazivamo \emph{"Iterativna kompilacija"} \cite{kisuki2000iterative}.
 \par
 Ovaj rad organizovan je na sledeći način. 
@@ -99,7 +99,7 @@ Konačno, dajemo zaključak na osnovu rezultata merenja performansi i potrošnje
 \section{Metode transformacija}
 \label{sec:transformacije}
 
-Optimizacija kompilatora za cilj ima da minimizuje ili maksimizuje određena svojstva izvršnog koda programa (npr. potrebnu procesorsku energija) i obično se implementira u obliku niza optimizacionih transformacija. Transformacije su izmene koje se vrše nad kodom kako bi se dobile željene performanse pri njegovom izvršavanju uz uslov da izmenjen kod mora da bude semantički ekvivalentan originalnom. Optimizacija petlji je veoma značajna zato što je procenat vremena koje programi pri izvršavanju provode u petljama veliki. Iz tog razloga ćemo se u ovom poglavlju većim delom koncentrisati na njima.  \\
+Optimizacija kompilatora ima za cilj da minimizuje ili maksimizuje određena svojstva izvršnog koda programa (npr. potrebnu procesorsku energiju) i obično se implementira u obliku niza optimizacionih transformacija. Transformacije su izmene koje se vrše nad kodom kako bi se dobile željene performanse pri njegovom izvršavanju uz uslov da izmenjen kod mora da bude semantički ekvivalentan originalnom. Optimizacija petlji je veoma značajna zato što je procenat vremena koje programi pri izvršavanju provode u petljama veliki. Iz tog razloga ćemo se u ovom poglavlju većim delom koncentrisati na njih.  \\
 
 \textbf{Odmotavanje petlji} (eng. loop unrolling) - Koristi se za smanjivanje vremena koje je potrebno za
 izvršavanje petlje po cenu povećavanja veličine koda koji joj odgovara. Cilj je da se u petlji
@@ -184,10 +184,10 @@ koju delimo na dve petlje sa po jednom naredbom koje imaju isti opseg:
 
 \textbf{Spajanje petlji} (eng. loop fusion) predstavlja transformaciju suprotnu podeli petlji. Kombinuje tela dve ili više petlji koje imaju iste
 granice u jednu. Ukoliko petlje koje spajamo koriste iste podatke, ovom transformacijom povećavamo
-njihovu lokalnost. Smanjenjem broja instrukcija koje se koriste za logiku kontrole toka se 
-umanjuje i potrebna ukupna procesorska energija.\\
+njihovu lokalnost. Smanjenjem broja instrukcija koje se koriste za logiku kontrole toka umanjuje se 
+i potrebna ukupna procesorska energija.\\
 
-\textbf{Popunjavanje niza} (eng. array padding) postavlja dimenziju niza na novu vrednost. Niz mora biti lokalna varijabla, a njegova dimenzija konstanta vrednost.
+\textbf{Popunjavanje niza} (eng. array padding) postavlja dimenziju niza na novu vrednost. Niz mora biti lokalna varijabla, a njegova dimenzija konstantna vrednost.
 
 \section{Pretraga ulaznih parametara}
 \label{sec:pretraga}
@@ -197,7 +197,7 @@ je traženje odgovora na pitanje koje transformacije je potrebno primeniti i sa 
 \subsection{Algoritmi pretrage}
 \label{sec:pretrage}
 
-Prostor pretrage (eng. search space) sadrži različite kombinacije parametara za koje se testira efikasnost kompajliranog programa. Kako bismo efikasno tražili optimalnu kombinaciju parametara koju ćemo na kraju i koristiti potrebno je da se što lakše krećemo po prostoru pretrage zato koristimo algoritme pretrage. Navešćemo sada neke algoritme pretrage uz načine njihovog funkcionisanja. Primenu ovih algoritama nad konkretnim podacima kao i širi spisak možete videti u \cite{kisuki2000iterative} \\
+Prostor pretrage (eng. search space) sadrži različite kombinacije parametara za koje se testira efikasnost kompajliranog programa. Kako bismo efikasno tražili optimalnu kombinaciju parametara koju ćemo na kraju i koristiti potrebno je da se što lakše krećemo po prostoru pretrage, zato koristimo algoritme pretrage. Navešćemo sada neke algoritme pretrage uz načine njihovog funkcionisanja. Primenu ovih algoritama nad konkretnim podacima kao i širi spisak možete videti u \cite{kisuki2000iterative} \\
 
 \textbf{Genetski algoritam} (eng. genetic algorithm). Prvo se slučajnim izborom bira određen broj kombinacija koje proglašavamo početnom populacijom. Zatim se vrši ukrštanje različitih kombinacija, a nakon toga mutacija u željenoj meri. Na kraju se evaluira nova populacija i ukoliko nije dostignut cilj nastavlja se sa primenom algoritma.\\
 
