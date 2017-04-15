@@ -209,12 +209,12 @@ Prostor pretrage (eng. search space) sadrži različite kombinacije parametara z
 
 \section{Performanse}
 \label{sec:performanse}
-    Treba dodati uvod...
+Neki uvod mali...
 
-\subsection{Performanse Podnaslov 1}
+\subsection{Uticaj na vreme izvršavanja}
 \label{sec:perpod1}
-    Treba neki uvod...
-\newline Tehnike koje su korišćene pri optimizaciji:
+  Ovde ćemo izneti rezultate dobijene u [!!] koji prikazuju uticaj iterativne kompilacije na brzinu izvršavanja programa.
+\newline Tehnike optimizacije koje su korišćene su:
 \begin{enumerate}
 \item Podela na blokove, gde su veličine blokova od 1 do 100
 \item Odmotavanje petlje, gde je faktor odmotavanja od 1 do 20
@@ -228,18 +228,19 @@ Reperi koji su korišćeni za testiranje:
 \item Direkta diskretna kosinusna transformacija (.eng Forward Discrete Cosine Transform, FDCT), veličine podataka 256, 300 i 301
 \item Rutina za kompenzaciju pokreta (.eng Motion compensation rutine, RECO), veličine podataka 2048, 2300 i 2301
 \end{enumerate}
-    Performanse su testirane na nekoliko različitih načina. 
-Prvi način testiranja je takav da se pretraga u okviru iterativne kompilacije izvrsava na 
+Programi su prevođeni na 2 načina.
+Prvi način prevođenja je takav da se pretraga u okviru iterativne kompilacije izvršva na 
 fiksiranoj veličini ulaznih podataka. Prevođenje je rađeno odvojeno nad dva skupa
 optimizacionih tehnika. Prvi skup čine tehnike 1. i 2. a drugi skup čine sve tri tehnike. Poboljšanje performansi 
-tako prevedenih programa su prikazane na slikama \ref{fig:slika1} gde je koršćen prvi skup tehnika i 
-\ref{fig:slika2} gde je korišćen drugi skup tehnika. Iz rezultata prikazanih na slici \ref{fig:slika1} vidimo da
+tako prevedenih programa je prikazano na slikama \ref{fig:slika1} gde je koršćen prvi skup optimizacionih tehnika i 
+\ref{fig:slika2} gde je korišćen drugi skup optimizacionih tehnika. Iz rezultata prikazanih na slici \ref{fig:slika1} vidimo da
 je došlo do poboljšanja u brzini izvršavanja čak i do 3.4 puta. Možemo primetiti i da pretraga pronalazi 
-dobro rešenje veoma brzo, unutar 50 iteracija u svim slučajevima sem MxM i SOR
-ubrzanje programa je blizu maksimuma. Za MxM i SOR se tek nakon više od 100 iteracija dolazi do značajnog poboljšanja.
+dobro rešenje veoma brzo, unutar 50 iteracija u svim slučajevima ubrzanje programa je blizu maksimuma
+, osim u slučaju MxM i SOR. Kod MxM i SOR se tek nakon više od 100 iteracija dolazi do značajnog poboljšanja.
 Ako uporedimo rezultate sa Slike \ref{fig:slika1} i Slike \ref{fig:slika2} vidimo da se približno ista poboljšanja
-u brzni dobijaju u okviru istog broja iteracija iako se korišćenjem drugog skupa tehnika povećava prostor pretrage.
-U slučaju MxV se nakon 350 iteracija dobija bolje rešenje u odnosu na rešenje dobijeno korišćenjem prvog skupa optimizacija..
+u brzni dobijaju u okviru istog broja iteracija iako se korišćenjem drugog skupa optimizacija povećava prostor 
+pretrage. U slučaju MxV se nakon 350 iteracija dobija bolje rešenje u odnosu na rešenje dobijeno korišćenjem prvog skupa 
+optimizacija.
 
 \begin{figure}[p]
 \begin{center}
@@ -249,7 +250,6 @@ U slučaju MxV se nakon 350 iteracija dobija bolje rešenje u odnosu na rešenje
 \label{fig:slika1}
 \end{figure}
 
-
 \begin{figure}[p]
 \begin{center}
 \includegraphics[width=\textwidth]{performanse2}
@@ -258,33 +258,31 @@ U slučaju MxV se nakon 350 iteracija dobija bolje rešenje u odnosu na rešenje
 \label{fig:slika2}
 \end{figure}
 
-Prvi način testiranja je pokazao da su za fiksiranu veličinu ulaznih podataka preformanse dobijenih programa značajno poboljšane.
+Prvi način prevodjenja je pokazao da su za fiksiranu veličinu ulaznih podataka preformanse dobijenih programa značajno poboljšane.
 U praksi naš program se neće izvršavati stalno nad ulaznim podacima koji su iste veličine kao i oni koji su korišćeni 
-pri kompilaciji, pa se iz tog razloga pristupilo i drugom načinu testiranja. Kod drugog načina testiranja 
+pri kompilaciji, pa se iz tog razloga pristupilo i drugom načinu kompilacije. Kod drugog načina kopajliranja 
 koriste se sve tehnike transformacije, a reperi koji se koriste za testiranje su MxM, MxV, FDCT i RECO.
 Pretraga u okviru kompilacije će se izvršavti nad više različitih ulaznih podataka gde će se kao mera kvaliteta uzimati
 srednja vrednost dobijenih rezultata. Na slici \ref{fig:slika3} prikazani su dobijeni rezultati.
-Crnom bojom su prikazani rezultati dobijeni prvim načinom testiranja. Sivom bojom su prikazani rezultati dobijeni
-drugim načinom testiranja s tim što su veličine ulaznih podataka sledeće:
+Crnom bojom su prikazani rezultati dobijeni prvim načinom kompilacije. Sivom bojom su prikazani rezultati dobijeni
+drugim načinom kompilacije s tim što su veličine ulaznih podataka sledeće:
 \begin{itemize}
 \item 256, 300 i 301 za MxM i FDCT
 \item 2048, 2300 i 2301 za MxV i RECO
 \end{itemize}
-Belom bojom su prikazani rezultati dobijeni drugim načinom testiranja, a veličine ulaznih podataka su:
+Belom bojom su prikazani rezultati dobijeni drugim načinom kompilacije a veličine ulaznih podataka su:
 \begin{itemize}
 \item 250, 260, 290 i 310 za MxM i FDCT
 \item 2000, 2100, 2200, 2400 za MxV i RECO
 \end{itemize}
 Svaki dobijeni program je pokrenut na reperima čije su veličine definisane na početku ove sekcije.
-Ako pogledamo grafik videćemo da se rezultati dobijeni drugom tehnikom idalje daju značajna poboljšanja u brzini izvršavanja.
-Možemo primetiti da je brzina izvršavanja programa dobijenih drugom tehnikom su za nijansu sporija od programa dobijenih 
-prvom tehnikom. U slučaju MxM vidimo da je program dobijen drugom metodom sa 3 različite veličine ulaznih podataka brži od programa
-dobijenim prvim načinom testiranja.
+Ako pogledamo grafik videćemo da rezultati dobijeni drugom metodom kompilacije idalje daju značajna poboljšanja 
+u brzini izvršavanja. Možemo primetiti i da je brzina izvršavanja programa dobijenih drugom medotom za nijansu 
+sporija od programa dobijenih prvom metodom. U slučaju MxM vidimo da je program prevodjen sa 3 različite veličine 
+ulaznih podataka brži od programa dobijenim prilikom prevodjenja sa fiksiranom veličinom ulaza.
 
-\begin{figure}[p]
-\begin{center}
-\includegraphics[width=\textwidth]{performanse3}
-\end{center}
+\begin{figure}[h]
+\includegraphics[scale=0.5]{performanse3}
 \caption{Poredjenje poboljšanja performansi}
 \label{fig:slika3}
 \end{figure}
