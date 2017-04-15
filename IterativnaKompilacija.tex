@@ -104,16 +104,17 @@ izvršavanje petlje po cenu povećavanja veličine koda koji joj odgovara. Cilj 
 smanji broj instrukcija koje se vezuju za kontrolu toka petlje. Odmotavanje petlji obično ima
 veliki doprinos kada u telu petlje postoje naredbe koje su nezavisne, odnosno mogu da se
 paralelno izvršavaju. Ovo se ostvaruje pružanjem većeg broja instrukcija hardveru nego u 
-slučaju originalnog koda.
-
+slučaju originalnog koda.\\
+Primer petlje koja vrši sve iteracije bez odmotavanja:
 \begin{lstlisting}
+
  int x;
  for (x = 0; x < 100; x++)
  {
      delete(x);
  }
 \end{lstlisting}
-
+i verzija u kojoj je upotrebljeno odmotavanje:
 \begin{lstlisting}
  int x; 
  for (x = 0; x < 100; x += 5)
@@ -130,7 +131,8 @@ slučaju originalnog koda.
 \textbf{Podela na blokove} (eng. loop tiling) - Telo petlje se deli na manje blokove kako bi se osiguralo
 da lokalni podaci koji se u njemu koriste ostaju u keš memoriji sve dok ne budu opet bili potrebni.
 Doprinos se ogleda u smanjenom broju promašaja keš memorije, kao i energije memorijskog sistema koja
-bi bila utrošena na prikupljanje podataka sa alternativnih izvora.
+bi bila utrošena na prikupljanje podataka sa alternativnih izvora.\\
+Primer koda koji vrši množenje matrica:
 
 \begin{lstlisting}
   int i, j, a[100][100], b[100], c[100];
@@ -142,7 +144,7 @@ bi bila utrošena na prikupljanje podataka sa alternativnih izvora.
     }
   }
 \end{lstlisting}
-
+i njemu odgovarajuća verzija koja deli prostor iteracije na blokove:
 \begin{lstlisting}
   int i, j, x, y, a[100][100], b[100], c[100];
   int n = 100;
@@ -159,9 +161,8 @@ bi bila utrošena na prikupljanje podataka sa alternativnih izvora.
   }
 \end{lstlisting}
 
-\textbf{Podela petlji} (eng. loop fission) deli telo petlje na dve ili više različitih petlji. Doprinos je u ovom slučaju smanjenje broja promašaja instrukcijske keš memorije i stvaranje mogućnosti da se, ukoliko su tela novonastalih petlji dovoljno mala, koriste baferi petlji (eng. loop buffer) \footnote{Bafer petlje je mala, jako brza memorija koja čuva određen broj vremenski skoro korišćenih naredbi. Ukoliko je bafer petlje dovoljno veliki da sadrži sve naredbe tela petlje, onda je potrebno samo jednom uzeti te informacije iz memorije, i to pri prvoj iteraciji \cite{stallings2000computer}} Negativne posledice podele petlji su povećana potreba za energijom memorijskog sistema usled smanjenja vremenske lokalnosti podataka (eng. temporal locality) .
-
-
+\textbf{Podela petlji} (eng. loop fission) deli telo petlje na dve ili više različitih petlji. Doprinos je u ovom slučaju smanjenje broja promašaja instrukcijske keš memorije i stvaranje mogućnosti da se, ukoliko su tela novonastalih petlji dovoljno mala, koriste baferi petlji (eng. loop buffer) \footnote{Bafer petlje je mala, jako brza memorija koja čuva određen broj vremenski skoro korišćenih naredbi. Ukoliko je bafer petlje dovoljno veliki da sadrži sve naredbe tela petlje, onda je potrebno samo jednom uzeti te informacije iz memorije, i to pri prvoj iteraciji \cite{stallings2000computer}} Negativne posledice podele petlji su povećana potreba za energijom memorijskog sistema usled smanjenja vremenske lokalnosti podataka (eng. temporal locality).\\
+Primer petlje u kojoj vršimo dve naredbe:
 \begin{lstlisting}
   int i, a[100], b[100];
   for (i = 0; i < 100; i++)
@@ -170,7 +171,7 @@ bi bila utrošena na prikupljanje podataka sa alternativnih izvora.
     b[i] = 2;
   }
 \end{lstlisting}
-
+koju delimo na dve petlje sa po jednom naredbom koje imaju isti opseg:
 \begin{lstlisting}
   int i, a[100], b[100];
   for (i = 0; i < 100; i++)
@@ -179,13 +180,30 @@ bi bila utrošena na prikupljanje podataka sa alternativnih izvora.
     b[i] = 2;
 \end{lstlisting}
 
-\textbf{Spajanje petlji} (eng. loop fusion) predstavlja transformaciju suprotnu podele petlji. Kombinuje tela dve ili više petlji koje imaju iste
+\textbf{Spajanje petlji} (eng. loop fusion) predstavlja transformaciju suprotnu podeli petlji. Kombinuje tela dve ili više petlji koje imaju iste
 granice u jednu. Ukoliko petlje koje spajamo koriste iste podatke, ovom transformacijom povećavamo
 njihovu lokalnost. Smanjenjem broja instrukcija koje se koriste za logiku kontrole toka se 
-umanjuje i potrebna ukupna procesorska energija.
+umanjuje i potrebna ukupna procesorska energija.\\
+
+\textbf{Popunjavanje niza} (eng. array padding) postavlja dimenziju niza na novu vrednost. Niz mora biti lokalna varijabla, a njegova dimenzija konstanta vrednost.
 
 \section{Pretraga ulaznih parametara}
 \label{sec:pretraga}
+Optimizacione transformacije međusobno imaju različite uticaje na kod. Uprkos tome što transformacije koristimo kako bi se u kodu ispoljile njihove pozitivne osobine, treba imati u vidu da loše kombinovanje nekih transformacija može rezultirati neefikasnijim kodom od originalnog. \cite{kisuki2000iterative} Primećuje se da je
+nalaženje optimalnog niza transformacija težak posao. \cite{Fursin2005} Suština iterativne kompilacije
+je traženje odgovora na pitanje koje transformacije je potrebno primeniti i sa kojim parametrima kako bi izvršni kod dobio željenu efikasnost. U ovom poglavlju ćemo opisati neke od elemenata koji su od velike važnosti pri traženju što efikasnijeg koda.
+\subsection{Algoritmi pretrage}
+\label{sec:pretrage}
+
+Prostor pretrage (eng. search space) sadrži različite kombinacije parametara za koje se testira efikasnost kompajliranog programa. Kako bismo efikasno tražili optimalnu kombinaciju parametara koju ćemo na kraju i koristiti potrebno je da se što lakše krećemo po prostoru pretrage zato koristimo algoritme pretrage. Navešćemo sada neke algoritme pretrage uz načine njihovog funkcionisanja. Primenu ovih algoritama nad konkretnim podacima kao i širi spisak možete videti u \cite{kisuki2000iterative} \\
+
+\textbf{Genetski algoritam} (eng. genetic algorithm). Prvo se slučajnim izborom bira određen broj kombinacija koje proglašavamo početnom populacijom. Zatim se vrši ukrštanje različitih kombinacija, a nakon toga mutacija u željenoj meri. Na kraju se evaluira nova populacija i ukoliko nije dostignut cilj nastavlja se sa primenom algoritma.\\
+
+\textbf{Pretraga mreže} (eng. grid search). Predstavlja tradicionalni pristup problemu optimizacije većeg broja parametara (eng. hyperparameter optimization). Sastoji se od generisanja različitih tačaka unutar mreže koje su u stvari kombinacije različitih vrednosti parametara. Ove tačke se testiraju i dalji rad algoritma pretrage se fokusira na prostor u okolini tačaka koje su se pokazale kao efikasne u tom trenutku. Grafički prikaz mreže tačaka i regiona polja pretrage koji su nam od značaja se može videti na Slika \ref{fig:grid} \\
+
+
+
+\textbf{Slučajna pretraga} (eng. random search). Parametri se generišu slučajnim izborom.
 
 \section{Performanse}
 \label{sec:performanse}
