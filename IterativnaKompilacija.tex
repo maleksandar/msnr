@@ -224,7 +224,7 @@ Prostor pretrage (eng. search space) sadrži različite kombinacije parametara z
 \section{Performanse}
 \label{sec:performanse}
 Optimizovanje programa u okviru statičke kompilacije se zasniva na proceni poboljšanja 
-bez da se prethodno program izvrši(različiti redosledi optimizacija daju različite rezultate). 
+bez prethodnog izvršavanja programa(različiti redosledi optimizacija daju različite rezultate). 
 Odluka da nekoj transformaciji treba dati prednost u odnosu na drugu, kod statičke kompilacije,
 donosi si se na osnovu predefinisanog skupa ocena. Lako je zaključiti da primenom iterativne kompilacije 
 možemo da testiramo veći broj mogućih nizova transformacija čime dolazimo do rešenja koja bolje optimizuju
@@ -236,23 +236,23 @@ program.
  na brzinu izvršavanja programa i porede je sa brzinom programa koji je preveden statičkim metodom kompilacije.
 \newline Tehnike optimizacije koje su korišćene:
 \begin{enumerate}
-\item Podela na blokove, gde su veličine blokova od 1 do 100
-\item Odmotavanje petlje, gde je faktor odmotavanja od 1 do 20
-\item Popunjavanje niza, gde je veličina popunjavanja od 1 to 10
+\item Podela na blokove, gde su veličine blokova od 1 do 100;
+\item Odmotavanje petlje, gde je faktor odmotavanja od 1 do 20;
+\item Popunjavanje niza, gde je veličina popunjavanja od 1 to 10;
 \end{enumerate}
 Reperi koji su korišćeni za testiranje:
 \begin{enumerate}
-\item Množenje matrica (MxM), veličine podataka 256, 300 i 301
-\item Množenje matrica i vektora (MxV), veličine podataka 2048, 2300 i 2301 
-\item Metod relaksacije (eng. \emph{Successive over-relaxation}, SOR), veličine podataka 128, 150 i 151
-\item Direkta diskretna kosinusna transformacija (eng. \emph{Forward Discrete Cosine Transform}, FDCT), veličine podataka 256, 300 i 301
-\item Rutina za kompenzaciju pokreta (eng. \emph{Motion compensation rutine}, RECO), veličine podataka 2048, 2300 i 2301
+\item Množenje matrica (MxM), veličine podataka 256, 300 i 301;
+\item Množenje matrica i vektora (MxV), veličine podataka 2048, 2300 i 2301;
+\item Metod relaksacije (eng. \emph{Successive over-relaxation}, SOR), veličine podataka 128, 150 i 151;
+\item Direktna diskretna kosinusna transformacija (eng. \emph{Forward Discrete Cosine Transform}, FDCT), veličine podataka 256, 300 i 301;
+\item Rutina za kompenzaciju pokreta (eng. \emph{Motion compensation rutine}, RECO), veličine podataka 2048, 2300 i 2301;
 \end{enumerate}
-Programi su prevođeni na 2 načina.
-Prvi način prevođenja je takav da se pretraga u okviru iterativne kompilacije izvršva na 
+Programi su prevođeni na dva načina.
+Prvi način prevođenja je takav da se pretraga u okviru iterativne kompilacije izvršava na 
 fiksiranoj veličini ulaznih podataka. Prevođenje je rađeno odvojeno nad dva skupa
-optimizacionih tehnika. Prvi skup čine tehnike 1. i 2. a drugi skup čine sve tri tehnike. Poboljšanje performansi 
-tako prevedenih programa je prikazano na slikama \ref{fig:slika2} gde je koršćen prvi skup optimizacionih tehnika i 
+optimizacionih tehnika. Prvi skup čine tehnike 1. i 2. a drugi skup sve tri tehnike. Poboljšanje performansi 
+tako prevedenih programa je prikazano na slikama \ref{fig:slika2} gde je korišćen prvi skup optimizacionih tehnika i 
 \ref{fig:slika3} gde je korišćen drugi skup optimizacionih tehnika. Iz rezultata prikazanih na slici \ref{fig:slika2} vidimo da
 je došlo do poboljšanja u brzini izvršavanja čak i do 3.4 puta. Možemo primetiti i da pretraga pronalazi 
 dobro rešenje veoma brzo, unutar 50 iteracija u svim slučajevima ubrzanje programa je blizu maksimuma, osim
@@ -282,22 +282,22 @@ Prvi način prevođenja je pokazao da su za fiksiranu veličinu ulaznih podataka
 U praksi naš program se neće izvršavati stalno nad ulaznim podacima koji su iste veličine kao i oni koji su korišćeni 
 pri kompilaciji, pa se iz tog razloga pristupilo i drugom načinu kompilacije. Kod drugog načina kompajliranja 
 koriste se sve tehnike transformacije, a reperi koji se koriste za testiranje su MxM, MxV, FDCT i RECO.
-Pretraga u okviru kompilacije će se izvršavti nad više različitih ulaznih podataka gde će se kao mera kvaliteta uzimati
+Pretraga u okviru kompilacije će se izvršavati nad više različitih ulaznih podataka gde će se kao mera kvaliteta uzimati
 srednja vrednost dobijenih rezultata. Na slici \ref{fig:slika4} prikazani su dobijeni rezultati.
 Crnom bojom su prikazani rezultati dobijeni prvim načinom kompilacije. Sivom bojom su prikazani rezultati dobijeni
-drugim načinom kompilacije s tim što su veličine ulaznih podataka sledeće:
+drugim načinom kompilacije, s tim što su veličine ulaznih podataka sledeće:
 \begin{itemize}
 \item 256, 300 i 301 za MxM i FDCT
 \item 2048, 2300 i 2301 za MxV i RECO
 \end{itemize}
-Belom bojom su prikazani rezultati dobijeni drugim načinom kompilacije a veličine ulaznih podataka su:
+Belom bojom su prikazani rezultati dobijeni drugim načinom kompilacije, a veličine ulaznih podataka su:
 \begin{itemize}
 \item 250, 260, 290 i 310 za MxM i FDCT
 \item 2000, 2100, 2200, 2400 za MxV i RECO
 \end{itemize}
 Svaki dobijeni program je pokrenut na reperima čije su veličine definisane na početku ove sekcije.
-Ako pogledamo grafik videćemo da rezultati dobijeni drugom metodom kompilacije idalje daju značajna poboljšanja 
-u brzini izvršavanja. Možemo primetiti i da je brzina izvršavanja programa dobijenih drugom medotom za nijansu 
+Ako pogledamo grafik videćemo da rezultati dobijeni drugom metodom kompilacije i dalje daju značajna poboljšanja 
+u brzini izvršavanja. Možemo primetiti i da je brzina izvršavanja programa dobijenih drugom metodom za nijansu 
 sporija od programa dobijenih prvom metodom. U slučaju MxM vidimo da je program kompajliran sa 3 različite veličine 
 ulaznih podataka brži od programa koji se dobija prilikom prevođenja sa fiksiranom veličinom ulaza.
 
@@ -314,7 +314,7 @@ U ovom radu opisali smo tehniku iterativne kompilacije.
 Pokazali smo da ova tehnika u mnogim situacijama dovodi 
 do značajnih ubrzanja i da su u gotovo svim situacijama 
 programi optimizovani iterativnom kompilacijom značajno 
-brži od programa komajliranih statičkim metodama, kao i da koriste
+brži od programa kompajliranih statičkim metodama, kao i da koriste
 značajno manje energije.
 \par
 Na osnovu načina traganja za najboljim transformacijama 
