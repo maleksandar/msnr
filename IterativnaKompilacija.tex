@@ -209,11 +209,17 @@ Prostor pretrage (eng. search space) sadrži različite kombinacije parametara z
 
 \section{Performanse}
 \label{sec:performanse}
-Neki uvod mali...
+Optimizovanje programa u okviru satička kompilacije se zasniva na proceni poboljšanja 
+bez da se prethodno program izvrši(različiti redosledi optimizacija daju različite rezultate). 
+Odluka da nekoj transformaciji treba dati prednost u odnosu na drugu, kod statičke kompilacije,
+donosi si se na osnovu predefinisanog skupa ocena. Lako je zaključiti da primenom iterativne kompilacije 
+možemo da pretražimo veći deo mogućih nizova transformacija i čime možemo doći do rešenja koja bolje optimizuju
+program.
 
 \subsection{Uticaj na vreme izvršavanja}
-\label{sec:perpod1}
-  Ovde ćemo izneti rezultate dobijene u [!!] koji prikazuju uticaj iterativne kompilacije na brzinu izvršavanja programa.
+\label{sec:uticaj}
+  Ovde ćemo izneti rezultate dobijene u \cite{kisuki2000iterative} koji prikazuju uticaj iterativne kompilacije 
+ na brzinu izvršavanja programa i porede je sa brzinom programa koji je preveden statičkim metodom kompilacije.
 \newline Tehnike optimizacije koje su korišćene su:
 \begin{enumerate}
 \item Podela na blokove, gde su veličine blokova od 1 do 100
@@ -224,9 +230,9 @@ Reperi koji su korišćeni za testiranje:
 \begin{enumerate}
 \item Množenje matrica (MxM), veličine podataka 256, 300 i 301
 \item Množenje matrica i vektora (MxV), veličine podataka 2048, 2300 i 2301 
-\item Metod relaksacije (.eng Successive over-relaxation, SOR), veličine podataka 128, 150 i 151
-\item Direkta diskretna kosinusna transformacija (.eng Forward Discrete Cosine Transform, FDCT), veličine podataka 256, 300 i 301
-\item Rutina za kompenzaciju pokreta (.eng Motion compensation rutine, RECO), veličine podataka 2048, 2300 i 2301
+\item Metod relaksacije (eng. Successive over-relaxation, SOR), veličine podataka 128, 150 i 151
+\item Direkta diskretna kosinusna transformacija (eng. Forward Discrete Cosine Transform, FDCT), veličine podataka 256, 300 i 301
+\item Rutina za kompenzaciju pokreta (eng. Motion compensation rutine, RECO), veličine podataka 2048, 2300 i 2301
 \end{enumerate}
 Programi su prevođeni na 2 načina.
 Prvi način prevođenja je takav da se pretraga u okviru iterativne kompilacije izvršva na 
