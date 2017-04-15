@@ -5,3 +5,7 @@
 *.out
 *.toc
 *.orig
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
