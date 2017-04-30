@@ -173,7 +173,10 @@ i njemu odgovarajuća verzija koja deli prostor iteracije na blokove:
   }
 \end{lstlisting}
 
-\textbf{Podela petlji} (eng. loop fission). Telo petlje se deli na dve ili više različitih petlji. Doprinos je u ovom slučaju smanjenje broja promašaja instrukcijske keš memorije i stvaranje mogućnosti da se, ukoliko su tela novonastalih petlji dovoljno mala, koriste baferi petlji (eng. loop buffer) \footnote{Bafer petlje je mala, jako brza memorija koja čuva određen broj vremenski skoro korišćenih naredbi. Ukoliko je bafer petlje dovoljno veliki da sadrži sve naredbe tela petlje, onda je potrebno samo jednom uzeti te informacije iz memorije, i to pri prvoj iteraciji \cite{stallings2000computer}} Negativna posledica podele petlji je povećana potreba za energijom memorijskog sistema usled smanjenja vremenske lokalnosti podataka (eng. temporal locality).\\
+\textbf{Podela petlji} (eng. loop fission). Telo petlje se deli na dve ili više različitih petlji. 
+Doprinos je u ovom slučaju smanjenje broja promašaja instrukcijske keš memorije i stvaranje mogućnosti da se, 
+ukoliko su tela novonastalih petlji dovoljno mala, 
+koriste baferi petlji (eng. loop buffer\footnote{Bafer petlje je mala, jako brza memorija koja čuva određen broj vremenski skoro korišćenih naredbi. Ukoliko je bafer petlje dovoljno veliki da sadrži sve naredbe tela petlje, onda je potrebno samo jednom uzeti te informacije iz memorije, i to pri prvoj iteraciji \cite{stallings2000computer}}) Negativna posledica podele petlji je povećana potreba za energijom memorijskog sistema usled smanjenja vremenske lokalnosti podataka (eng. temporal locality).\\
 Primer petlje u kojoj vršimo dve naredbe:
 \begin{lstlisting}
   int i, a[100], b[100];
@@ -201,17 +204,26 @@ i potrebna ukupna procesorska energija.\\
 
 \section{Pretraga ulaznih parametara}
 \label{sec:pretraga}
-Optimizacione transformacije međusobno imaju različite uticaje na kod. Uprkos tome što transformacije koristimo kako bi se u kodu ispoljile njihove pozitivne osobine, treba imati u vidu da loše kombinovanje nekih transformacija može rezultirati neefikasnijim kodom od originalnog. \cite{kisuki2000iterative} Primećuje se da je
-nalaženje optimalnog niza transformacija težak posao. \cite{Fursin2005} Suština iterativne kompilacije
-je traženje odgovora na pitanje koje transformacije je potrebno primeniti i sa kojim parametrima kako bi izvršni kod dobio željenu efikasnost. U ovom poglavlju ćemo opisati neke od elemenata koji su od velike važnosti pri traženju što efikasnijeg koda.
+Optimizacione transformacije međusobno imaju različite uticaje na kod. 
+Uprkos tome što transformacije koristimo kako bi se u kodu ispoljile njihove pozitivne osobine, 
+treba imati u vidu da loše kombinovanje nekih transformacija može rezultirati neefikasnijim kodom od originalnog \cite{kisuki2000iterative}. 
+Primećuje se da je nalaženje optimalnog niza transformacija težak posao \cite{Fursin2005}. Suština iterativne kompilacije
+je traženje odgovora na pitanje koje transformacije je potrebno primeniti i sa kojim parametrima kako bi 
+izvršni kod dobio željenu efikasnost. U ovom poglavlju ćemo opisati neke od elemenata koji su od velike važnosti pri traženju što efikasnijeg koda.
 \subsection{Algoritmi pretrage}
 \label{sec:pretrage}
 
-Prostor pretrage (eng. search space) sadrži različite kombinacije parametara za koje se testira efikasnost kompajliranog programa. Kako bismo efikasno tražili optimalnu kombinaciju parametara koju ćemo na kraju i koristiti potrebno je da se što lakše krećemo po prostoru pretrage, zato koristimo algoritme pretrage. Navešćemo sada neke algoritme pretrage uz načine njihovog funkcionisanja. Primenu ovih algoritama nad konkretnim podacima kao i širi spisak možete videti u \cite{kisuki2000iterative} \\
+Prostor pretrage (eng. search space) sadrži različite kombinacije parametara za koje se testira efikasnost kompajliranog 
+programa. Kako bismo efikasno tražili optimalnu kombinaciju parametara koju ćemo na kraju i koristiti potrebno je da se što 
+lakše krećemo po prostoru pretrage, zato koristimo algoritme pretrage. 
+Navešćemo sada neke algoritme pretrage uz načine njihovog funkcionisanja. 
+Primenu ovih algoritama nad konkretnim podacima kao i širi spisak možete videti u \cite{kisuki2000iterative}. \\
 
 \textbf{Genetski algoritam} (eng. genetic algorithm). Prvo se slučajnim izborom bira određen broj kombinacija koje proglašavamo početnom populacijom. Zatim se vrši ukrštanje različitih kombinacija, a nakon toga mutacija u željenoj meri. Na kraju se evaluira nova populacija i ukoliko nije dostignut cilj nastavlja se sa primenom algoritma.\\
 
-\textbf{Pretraga mreže} (eng. grid search). Predstavlja tradicionalni pristup problemu optimizacije većeg broja parametara (eng. hyperparameter optimization). Sastoji se od generisanja različitih tačaka unutar mreže koje su u stvari kombinacije različitih vrednosti parametara. Ove tačke se testiraju i dalji rad algoritma pretrage se fokusira na prostor u okolini tačaka koje su se pokazale kao efikasne u tom trenutku. Grafički prikaz mreže tačaka i regiona polja pretrage koji su nam od značaja se može videti na Slika \ref{fig:slika1} \\
+\textbf{Pretraga mreže} (eng. grid search). Predstavlja tradicionalni pristup problemu optimizacije većeg broja parametara (eng. hyperparameter optimization). 
+Sastoji se od generisanja različitih tačaka unutar mreže koje su u stvari kombinacije različitih vrednosti parametara. 
+Ove tačke se testiraju i dalji rad algoritma pretrage se fokusira na prostor u okolini tačaka koje su se pokazale kao efikasne u tom trenutku. Grafički prikaz mreže tačaka i regiona polja pretrage koji su nam od značaja se može videti na slici \ref{fig:slika1}.\\
 
 \begin{figure}[h]
 \includegraphics[scale=0.75]{grid.png}
@@ -224,9 +236,9 @@ Prostor pretrage (eng. search space) sadrži različite kombinacije parametara z
 \section{Performanse}
 \label{sec:performanse}
 Optimizovanje programa u okviru statičke kompilacije se zasniva na proceni poboljšanja 
-bez prethodnog izvršavanja programa(različiti redosledi optimizacija daju različite rezultate). 
+bez prethodnog izvršavanja programa (različiti redosledi optimizacija daju različite rezultate). 
 Odluka da nekoj transformaciji treba dati prednost u odnosu na drugu, kod statičke kompilacije,
-donosi si se na osnovu predefinisanog skupa ocena. Lako je zaključiti da primenom iterativne kompilacije 
+donosi se na osnovu predefinisanog skupa ocena. Lako je zaključiti da primenom iterativne kompilacije 
 možemo da testiramo veći broj mogućih nizova transformacija čime dolazimo do rešenja koja bolje optimizuju
 program.
 
