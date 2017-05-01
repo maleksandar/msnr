@@ -19,7 +19,7 @@
 
 \begin{document}
 
-\title{Dopunite naslov svoga rada\\ \small{Dopunite autore rada}}
+\title{Optimizacija izvršavanja programa kroz Iterativnu Kompilaciju\\ \small{Filip Novović, Aleksandar Preočanin, Aleksandar Milosavljević}}
 
 \maketitle
 
@@ -52,13 +52,13 @@ Rad opisuje postupak iterativne kompilacije. Fokus je na aspekatu optimizacije p
 % Напишете своја запажања и конструктивне идеје шта у раду недостаје и шта би требало да се промени-измени-дода-одузме да би рад био квалитетнији.
 
 \textit{Poglavlje 1.} Možda je subjektivno ali uvod se čini predugačkim. Iterativna kompilacija se spominje tek na kraju petog pasusa. Moja preporuka je da se uvodna priča skrati i više fokusira na samu kompilaciju programa i po čemu se iterativna izdvaja od uobičajenog pristupa. Razumem da ste hteli da date motivaciju za ovu tehniku i iz tog ugla dato zapažanje je korektno. Ukoliko je ovo samo moje zapažanje onda smatram da se može zanemariti. \\
-
+\odgovor{ Uvod je smanjen za jedan paragraf koji je bio suvišan. Ipak, veći deo teksta je ostao jer su autori želeli da naglase motivaciju pre same implementacije ove metode. }
 \textit{Poglavlje 1 i 2.} Neke opšte informacije o kompilaciji nisu date. Umesto dugog uvoda bolje bi poslužio kratak opis postupka kompilacije (leksička, sintaksna i semantička analiza, zatim generisanje, optimizacija međukôda i generisanje mašinskog kôda). Zatim objasiti gde u tom postupku iterativna kompilacija se razlikuje od uobičajenog postupka. A tek onda preći na opis transformacija kôda. Pod pretpostavkom da je čitalac upoznat sa postupkom kompilacije ovo bi se možda moglo zanemariti ali mislim da je bolje imati takvo pojašnjenje. \\
-
+\odgovor{ Od čitaoca se očekuje osnovno znanje o prevođenju programskih jezika. Naš propust je bio u tome što to nismo eksplicitno naglasili. To smo u ovoj verziji ispravili dodavanjem ovog pojašnjenja na kraj uvoda. }
 \textit{Poglavlje 2.} Fokus je samo na optimizaciji petlji i ne spominju se neke druge transformacije. U uvodu jeste rečeno: ,,Koncentrišemo se (naravno) na one transformacije koje su konfigurabilne.'' ali se to u ovom poglavlju ne spominje. Takođe ako je to razlog zbog kojeg se fokusiramo samo na petlje onda to treba reći (ovde pre nego u uvodu) i opravdati na neki način. Bilo sa objašnjenjem ili sa referencom na rad koji je to potvrdio. Optimizacije kao što su alokacija i dodela registara ili izbor instrukcija je moguće vršiti na više načina. Pitanje postoji da li su one i u kolikoj meri konfigurabilne na način koji odgovara iterativnom postupku kompilacije, ali to je nešto na šta rad treba da odgovori. \\
 
 \textit{Poglavlje 4.} Jedno od pitanja koje je zadato uz temu je bilo: ,,Koje su mogućnosti iterativne kompilacije kao tehnike uštede energije?''. Međutim u poglavlju 4 kada su dati rezultati jednog istraživanja o iterativnoj kompilaciji, energetska potrošnja se nigde ne spominje. U sažetku i uvodu je rečeno da je urađeno takvno poređenje ali ono nigde nije spomenuto do zaključka gde se tvrdi da ova tehnika dovodi do manje upotrebe energije (ali kao što je već pomenuto to nije rečeno u radu). Sve slike i grafici koji su dati u poglavlju 4 se odnose na poboljšanje performansi. Istraživanje koje je ovde referisano ne govori o energetskoj efikasnosti u svom radu. \\
-
+\odgovor { Ovo poglavlje je sada dodato sa propratnim slikama i tabelama. }
 \section{Sitne primedbe}
 % Напишете своја запажања на тему штампарских-стилских-језичких грешки
 \begin{enumerate}
@@ -72,7 +72,7 @@ Rad opisuje postupak iterativne kompilacije. Fokus je na aspekatu optimizacije p
 	\item \textit{Poglavlje 4 (prvi pasus).} Ne postoji razmak između reči pre zagrade i same zagrade. Potrebno je dodati ga.
 	\item \textit{Poglavlje 4 (prvi pasus).} Rečenica: ,,Odluka da nekoj transformaciji treba dati prednost u odnosu na drugu, kod statičke kompilacije, donosi \textbf{si} se na osnovu predefinisanog skupa ocena.'', sadrži reč viška. Ukolinti reč ,,si''.
 \end{enumerate}
-
+\odgovor { Ispravljene su sintaksne greške. }
 \section{Provera sadržajnosti i forme seminarskog rada}
 % Oдговорите на следећа питања --- уз сваки одговор дати и образложење
 
@@ -131,15 +131,19 @@ Rad uvodi pojam \textit{iterativne kompilacije} i objašnjava kako se ona može 
 \label{sec: primedbe}
 
 \noindent Na kraju uvoda, kao i u delu 4.1, pominju se "reperi". Meni pojam nije poznat i smatram da nedostaje kratak opis i referenca za detalje o tome.
+\odgovor{"Reperi" su najpribližniji prevod pojma ,,Benchmark''. Ovo pojašnjenje je dodato fusnotom u rad. }
 \\
 \\
 Sekcija 2 nema nijednu referencu. Uvedeno je 5 pojmova i lepo su objašnjeni, ali potrebno je dodati literaturu koja to detaljnije opisuje.
+\odgovor{Reference su dodate. }
 \\
 \\
 Pogrešno referisanje u sekciji 3. Naime, za algoritme pretrage navedena je referenca [3] (Toru Kisuki, P Knijnenburg, M O'Boyle, and H Wijshoff. Iterative compilation in program optimization) međutim, u tom radu nema ništa na tu temu dok, u radu Iterative Compilation - P.M.W. Knijnenburg1, T. Kisuki, and M.F.P. O'Boyle, koji je zadat kao početna literatura a nije naveden u literaturi uopšte, nalaze se pomenuti algoritmi i rezultati vezani za njihovu primenu nad konkretnim podacima.
+\odgovor{Propust uočen i ispravljen.}
 \\
 \\
 Deo 4.1 poprilično liči na sekcije 3 i 4 u radu  [3] (Toru Kisuki, P Knijnenburg, M O'Boyle, and H Wijshoff. Iterative compilation in program optimization). Referenca je navedena na samom početku i naglašeno je da su rezultati preuzeti iz tog rada. Međutim, preuzet je i sam tekst. Umesto da je prepričan i na taj način sažet, delovi teksta su prevedeni i samo ubačeni u rad. Potrebno je da se to malo bolje napiše, svojim rečima.
+
 \\
 \\
 U sažetku i uvodu je navedeno da u radu postoji poređenje potrošnje energije. Potrošnja energije se provlači kroz rad, ali poređenja sa statički kompiliranim programima nema. Smatram da je potrebno da se još nešto napiše na tu temu.
