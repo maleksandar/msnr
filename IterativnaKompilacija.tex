@@ -53,13 +53,13 @@
   i motivaciju za njeno korišćenje. Objašnjavamo suštinu ovog pristupa optimizaciji, kao i zbog čega 
   je primenjiv na bilo koju arhitekturu ili algoritamski problem. 
   Dajemo uporedne podatke o brzini izvršavanja 
-  iterativno kompajliranih programa sa programima kompajliranim na statički način.
+  iterativno kompiliranih programa sa programima kompiliranih na statički način.
   Zatim, opisujemo neke od čestih tehnika 
   statičke optimizacije petlji i efikasnog korišćenja keš memorije i 
   razjašnjavamo kako nam one mogu biti korisne u iterativnoj tehnici prevođenja programa.
   Otkrivamo kako izabrati najbolje od tih tehnika uz korišćenje najboljih 
   parametara za dati problem i arhitekturu.
-  Konačno, upoređujemo potrošnju energije ovakvih programa sa potrošnjom energije statički kompajliranih programa.
+  Konačno, upoređujemo potrošnju energije ovakvih programa sa potrošnjom energije statički kompiliranih programa.
 }
 \tableofcontents
 
@@ -72,7 +72,7 @@ U poslednjih 30 godina svedoci smo neverovatnog napretka kompjuterskih tehnologi
 Računari su za veoma kratko vreme prešli put od čuda tehnike koje je dozvoljeno posmatrati isključivo kroz stakleni zid serverske sobe, 
 do uređaja čije se korišćenje podrazumeva u svakodnevnom radu čoveka. Broj uređaja koje možemo smatrati računarima se konstantno povećava iz godine u godinu. 
 Od mobilnih telefona, preko prenosnih računara, pa sve do pametnih veš-mašina, računari su postali sastavni (vrlo često i centralni) deo uređaja za koje, 
-do pre samo par godina, nismo mogli ni da pretpostavimo da će postati "pametni".
+do pre samo par godina, nismo mogli ni da pretpostavimo da će postati ,,pametni''.
 \par
 Ovaj fenomen eksplozije broja računara i njegovih primena doveo je do nekih logičnih posledica. 
 Arhitektura procesora od uređaja do uređaja postala je izuzetno šarolika. Zahtevi za uštedom memorije, procesorskog vremena i energije (struje) postali su primarni na uređajima koji nisu 
@@ -90,7 +90,7 @@ Suština ove metode prevođenja je u dodatnom sloju koji se nalazi između izvor
 Svrha tog sloja je da proizvede optimizovaniji \emph{izvorni k\^{o}d} koji se zatim prosleđuje 
 prevodiocu. Kako postoje različiti načini transformacije jednog izvornog koda u drugi, i kako ne postoji jedan statički niz transformacija i njihovih konfiguracija koji bi dao optimalne rezultate za sve probleme i platforme, 
 jasno je da odabir transformacija i ulazne parametre tih transformacija moramo naći nekakvom pametnom pretragom. 
-Taj proces pretrage parametara nazivamo \emph{"Iterativna kompilacija"} \cite{kisuki2000iterative}.
+Taj proces pretrage parametara nazivamo \emph{,,Iterativna kompilacija''} \cite{kisuki2000iterative}.
 \par
 Ovaj rad organizovan je na sledeći način. 
 U odeljku \ref{sec:transformacije} opisujemo neke od transformacija izvornog koda koje je moguće koristiti pri optimizaciji. 
@@ -207,7 +207,7 @@ izvršni kod dobio željenu efikasnost. U ovom poglavlju ćemo opisati neke od e
 \subsection{Algoritmi pretrage}
 \label{sec:pretrage}
 
-Prostor pretrage (eng. search space) sadrži različite kombinacije parametara za koje se testira efikasnost kompajliranog 
+Prostor pretrage (eng. search space) sadrži različite kombinacije parametara za koje se testira efikasnost kompiliranog 
 programa. Kako bismo efikasno tražili optimalnu kombinaciju parametara koju ćemo na kraju i koristiti potrebno je da se što 
 lakše krećemo po prostoru pretrage, zato koristimo algoritme pretrage. 
 Navešćemo sada neke algoritme pretrage uz načine njihovog funkcionisanja. 
@@ -292,7 +292,7 @@ optimizacija.
 
 Prvi način prevođenja je pokazao da su za fiksiranu veličinu ulaznih podataka preformanse dobijenih programa značajno poboljšane.
 U praksi naš program se neće izvršavati stalno nad ulaznim podacima koji su iste veličine kao i oni koji su korišćeni 
-pri kompilaciji, pa se iz tog razloga pristupilo i drugom načinu kompilacije. Kod drugog načina kompajliranja 
+pri kompilaciji, pa se iz tog razloga pristupilo i drugom načinu kompilacije. Kod drugog načina prevođenja 
 koriste se sve tehnike transformacije, a reperi koji se koriste za testiranje su MxM, MxV, FDCT i RECO.
 Pretraga u okviru kompilacije će se izvršavati nad više različitih ulaznih podataka gde će se kao mera kvaliteta uzimati
 srednja vrednost dobijenih rezultata. Na slici \ref{fig:slika4} prikazani su dobijeni rezultati.
@@ -310,7 +310,7 @@ Belom bojom su prikazani rezultati dobijeni drugim načinom kompilacije, a veli�
 Svaki dobijeni program je pokrenut na reperima čije su veličine definisane na početku ove sekcije.
 Ako pogledamo grafik videćemo da rezultati dobijeni drugom metodom kompilacije i dalje daju značajna poboljšanja 
 u brzini izvršavanja. Možemo primetiti i da je brzina izvršavanja programa dobijenih drugom metodom za nijansu 
-sporija od programa dobijenih prvom metodom. U slučaju MxM vidimo da je program kompajliran sa 3 različite veličine 
+sporija od programa dobijenih prvom metodom. U slučaju MxM vidimo da je program kompiliran sa 3 različite veličine 
 ulaznih podataka brži od programa koji se dobija prilikom prevođenja sa fiksiranom veličinom ulaza.
 
 \begin{figure}[h]
@@ -373,7 +373,7 @@ U ovom radu opisali smo tehniku iterativne kompilacije.
 Pokazali smo da ova tehnika u mnogim situacijama dovodi 
 do značajnih ubrzanja i da su u gotovo svim situacijama 
 programi optimizovani iterativnom kompilacijom značajno 
-brži od programa kompajliranih statičkim metodama, kao i da koriste
+brži od programa kompiliranih statičkim metodama, kao i da koriste
 značajno manje energije.
 \par
 Na osnovu načina traganja za najboljim transformacijama 
@@ -390,7 +390,7 @@ na efikasnost uređaja u svetu \emph{interneta stvari} (eng. \emph{Internet Of T
 gde većina uređaja ima ograničenu dostupnost električne energije, kao i u svetu 
 mobilnih uređaja.
 \par
-Nadamo se da će sa kompajlerima koji se budu razvijali u budućnosti u paketu 
+Nadamo se da će sa prevodiocima koji se budu razvijali u budućnosti u paketu 
 dolaziti i mnoge optimizacione tehnike i alati među kojima ćemo videti i
 neke varijante iterativne kompilacije.
 \addcontentsline{toc}{section}{Literatura}
