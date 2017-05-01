@@ -206,7 +206,7 @@ i potrebna ukupna procesorska energija.\\
 \label{sec:pretraga}
 Optimizacione transformacije međusobno imaju različite uticaje na kod. 
 Uprkos tome što transformacije koristimo kako bi se u kodu ispoljile njihove pozitivne osobine, 
-treba imati u vidu da loše kombinovanje nekih transformacija može rezultirati neefikasnijim kodom od originalnog \cite{kisuki2000iterative}. 
+treba imati u vidu da loše kombinovanje nekih transformacija može rezultirati neefikasnijim kodom od originalnog \cite{Knijnenburg2002}. 
 Primećuje se da je nalaženje optimalnog niza transformacija težak posao \cite{Fursin2005}. Suština iterativne kompilacije
 je traženje odgovora na pitanje koje transformacije je potrebno primeniti i sa kojim parametrima kako bi 
 izvršni kod dobio željenu efikasnost. U ovom poglavlju ćemo opisati neke od elemenata koji su od velike važnosti pri traženju što efikasnijeg koda.
@@ -240,7 +240,13 @@ bez prethodnog izvršavanja programa (različiti redosledi optimizacija daju raz
 Odluka da nekoj transformaciji treba dati prednost u odnosu na drugu, kod statičke kompilacije,
 donosi se na osnovu predefinisanog skupa ocena. Lako je zaključiti da primenom iterativne kompilacije 
 možemo da testiramo veći broj mogućih nizova transformacija čime dolazimo do rešenja koja bolje optimizuju
-program.
+program. 
+
+\par
+Tokom pretrage u okviru iterativne kompilacije kao glavni način ocenjivanja kvaliteta dobijenog niza transformacija
+ se uzima vreme izvršavanja tako optimizovanog programa. Međutim, nama nije zabranjeno da pored vremena izvršavanja
+ uvedemo još neke ocene kao na primer potrošnja energije. Uvođenjem potrošnje enerije kao ocene, ne samo da tražimo
+ rešenje koje nam daje najbolje vreme izvršavanja već i rešenje koje će nam samnjiti utrošak energije.
 
 \subsection{Uticaj na vreme izvršavanja}
 \label{sec:uticaj}
@@ -318,6 +324,11 @@ ulaznih podataka brži od programa koji se dobija prilikom prevođenja sa fiksir
 \caption{Poredjenje poboljšanja performansi}
 \label{fig:slika4}
 \end{figure}
+
+\subsection{Odnos vremena izvršavanja i uštede energije}
+\label{sec:naslov}
+
+  
 
 \newpage
 \section{Zaključak}
