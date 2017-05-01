@@ -7,6 +7,7 @@
 \usepackage[T2A]{fontenc} % enable Cyrillic fonts
 \usepackage[utf8]{inputenc} % make weird characters work
 \usepackage{graphicx}
+\usepackage[table,xcdraw]{xcolor}
 \graphicspath{ {Slike/} }
 
 \usepackage{listings}
@@ -199,7 +200,7 @@ i potrebna ukupna procesorska energija.\\
 \label{sec:pretraga}
 Optimizacione transformacije međusobno imaju različite uticaje na kod. 
 Uprkos tome što transformacije koristimo kako bi se u kodu ispoljile njihove pozitivne osobine, 
-treba imati u vidu da loše kombinovanje nekih transformacija može rezultirati neefikasnijim kodom od originalnog \cite{kisuki2000iterative}. 
+treba imati u vidu da loše kombinovanje nekih transformacija može rezultirati neefikasnijim kodom od originalnog \cite{Knijnenburg2002}. 
 Primećuje se da je nalaženje optimalnog niza transformacija težak posao \cite{Fursin2005}. Suština iterativne kompilacije
 je traženje odgovora na pitanje koje transformacije je potrebno primeniti i sa kojim parametrima kako bi 
 izvršni kod dobio željenu efikasnost. U ovom poglavlju ćemo opisati neke od elemenata koji su od velike važnosti pri traženju što efikasnijeg koda.
@@ -233,7 +234,13 @@ bez prethodnog izvršavanja programa (različiti redosledi optimizacija daju raz
 Odluka da nekoj transformaciji treba dati prednost u odnosu na drugu, kod statičke kompilacije,
 donosi se na osnovu predefinisanog skupa ocena. Lako je zaključiti da primenom iterativne kompilacije 
 možemo da testiramo veći broj mogućih nizova transformacija čime dolazimo do rešenja koja bolje optimizuju
-program.
+program. 
+
+\par
+Tokom pretrage u okviru iterativne kompilacije kao glavni način ocenjivanja kvaliteta dobijenog niza transformacija
+ se uzima vreme izvršavanja tako optimizovanog programa. Međutim, nama nije zabranjeno da pored vremena izvršavanja
+ uvedemo još neke ocene kao na primer potrošnja energije. [Promeniti]Uvođenjem potrošnje enerije kao još jedne ocene kvaliteta,
+  ne samo da tražimo rešenje koje nam daje najbolje vreme izvršavanja već i rešenje koje će nam samnjiti utrošak energije.
 
 \subsection{Uticaj na vreme izvršavanja}
 \label{sec:uticaj}
@@ -312,6 +319,53 @@ ulaznih podataka brži od programa koji se dobija prilikom prevođenja sa fiksir
 \label{fig:slika4}
 \end{figure}
 
+\subsection{Odnos vremena izvršavanja i uštede energije}
+\label{sec:naslov}
+Transformacije koje se koriste za optimizaciju pored toga što utiču na poboljšanje vremena izvršavanja,
+ takođe utiču i na potrošnju energije. Kao što su različiti nizovi transformacija različito uticali na vreme izvršavanja, 
+ tako različiti nizovi transformacija utiču i na potrošnju. Na osnovu iznetih informacija u prethodnim sekcijama možemo 
+ pomisliti da niz transformacija koji daje rešenje sa najboljim vremenom izvršavanja
+ ujedno daje i rešenje sa najvećom uštedom energije. Takav zaključak je ispravan u većini slučajeva.
+\par
+Da bismo potkrepili prethodnu priču iznećemo neke praktične rezultate koje su prikazani u \cite{gheorghita2005iterative}.
+Prikazaćemo rezultate koji su dobijeni nad reperima MxM (veličine 128) i SOR (veličine 512). Od transformacija 
+su korišćene odmotavanje petlji (sa faktorom odmotavanja između 0 i 40) i podela na blokove (sa veličinom bloka između 0 i 100).
+Za svaki par parametara je pronadjeno rešenje i izemeereno vreme izvršavanja i potrošnja energije, a zatim su se dobijeni rezultati 
+uporedili sa najboljim mogućim rešenjem. Rezultati su prikazani na slici \ref{fig:slika5}. 
+Grafikoni pod a i c predstavljaju odnos između vremena izvršavanja dok grafikoni pod b i d odnos između potrošnje energije.
+Svaka od boja predstavlja odnos koliko je dobijeno rešenje gore od najboljeg i to u procentima. 
+Značenje svake od boja je prikazano u tabeli \ref{tab:tab1}.
+
+\par
+Ako pogledamo grafikone vidimo da se oblasti koje daju najmanje odstupanja kako u vremenu izvršavanja tako i u uštedi energije poklapaju
+kao i da rešenja koja odstupaju u vremenu iz u performansama takođe mogu da budu optimalna što se tiče uštede energije.
+
+\begin{figure}[p]
+\includegraphics[scale=0.5]{performanse4}
+\caption{Prikaz dobijenih rezltata za MxM i SOR}
+\label{fig:slika5}
+\end{figure}
+
+\begin{table}[]
+\centering
+\caption{Predložiti naslov}
+\label{tab:tab1}
+\begin{tabular}{|c|l|c|l|l|}
+\hline
+\multicolumn{2}{|c|}{Boja}                     & \multicolumn{3}{l|}{Koliko je rešenje lošije od najboljeg mogućeg} \\ \hline
+\multicolumn{2}{|c|}{\cellcolor[HTML]{FFFFFF}} & \multicolumn{3}{c|}{Između 0\% - 3\%}                              \\ \hline
+\multicolumn{2}{|c|}{\cellcolor[HTML]{FFFF8F}} & \multicolumn{3}{c|}{Između 3\% - 10\%}                             \\ \hline
+\multicolumn{2}{|c|}{\cellcolor[HTML]{FEFF1F}} & \multicolumn{3}{c|}{Između 10\% - 17\%}                            \\ \hline
+\multicolumn{2}{|c|}{\cellcolor[HTML]{FFCA00}} & \multicolumn{3}{c|}{Između 17\% - 25\%}                            \\ \hline
+\multicolumn{2}{|c|}{\cellcolor[HTML]{FF7F00}} & \multicolumn{3}{c|}{Između 25\% - 35\%}                            \\ \hline
+\multicolumn{2}{|c|}{\cellcolor[HTML]{FE3500}} & \multicolumn{3}{c|}{Između 25\% - 50\%}                            \\ \hline
+\multicolumn{2}{|c|}{\cellcolor[HTML]{EA0001}} & \multicolumn{3}{c|}{Između 50\% - 100\%}                           \\ \hline
+\multicolumn{2}{|c|}{\cellcolor[HTML]{9F0100}} & \multicolumn{3}{c|}{Između 100\% - 200\%}                          \\ \hline
+\multicolumn{2}{|c|}{\cellcolor[HTML]{540000}} & \multicolumn{3}{c|}{Između 200\% - 300\%}                          \\ \hline
+\multicolumn{2}{|c|}{\cellcolor[HTML]{0A0000}} & \multicolumn{3}{c|}{Preko 300\%}                                   \\ \hline
+\end{tabular}
+\end{table}
+
 \newpage
 \section{Zaključak}
 \label{sec:zakljucak}
@@ -343,7 +397,5 @@ neke varijante iterativne kompilacije.
 \appendix
 \bibliography{seminarski} 
 \bibliographystyle{plain}
-
-
 
 \end{document}
