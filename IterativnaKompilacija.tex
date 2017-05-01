@@ -42,7 +42,7 @@
 
 \begin{document}
 
-\title{Optimizacija izvršavanja programa kroz Iterativnu Kompilaciju\\ \small{Seminarski rad u okviru kursa\\Metodologija stručnog i naučnog rada\\ Matematički fakultet}}
+\title{Optimizacija izvršavanja programa kroz iterativnu kompilaciju\\ \small{Seminarski rad u okviru kursa\\Metodologija stručnog i naučnog rada\\ Matematički fakultet}}
 
 \author{Filip Novović, Aleksandar Preočanin, Aleksandar Milosavljević\\ filipn@post.com, preocanin.aleksandar@gmail.com, alemilosav@gmail.com }
 \date{14.~april 2017.}
@@ -96,14 +96,14 @@ Ovaj rad organizovan je na sledeći način.
 U odeljku \ref{sec:transformacije} opisujemo neke od transformacija izvornog koda koje je moguće koristiti pri optimizaciji. 
 Koncentrišemo se (naravno) na one transformacije koje su konfigurabilne. Pokazujemo na koji način ove transformacije utiču na performanse i kako se mogu kombinovati. 
 U odeljku \ref{sec:pretraga} poredimo različite metode pretrage ulaznih parametara niza transformacija.
-U odeljku \ref{sec:performanse} poredimo performanse programa prevedenih na ovaj način kroz različite repere i realne programe, i poredimo potrošnju energije tih programa.
+U odeljku \ref{sec:performanse} poredimo performanse programa prevedenih na ovaj način kroz različite repere\footnote{Reperi su najpribližniji prevod pojma ,,benchmark''} i realne programe, i poredimo potrošnju energije tih programa.
 Konačno, dajemo zaključak na osnovu rezultata merenja performansi i potrošnje energije u odeljku \ref{sec:zakljucak}.
 Od čitaoca se očekuje osnovno poznavanje procesa prevođenja programskih jezika, kao što su leksička i sintaksna analiza, pretprocesiranje i prevođenje na mašinski kod.
 
 \section{Metode transformacija}
 \label{sec:transformacije}
 
-Optimizacija kompilatora ima za cilj da minimizuje ili maksimizuje određena svojstva izvršnog koda programa (npr. potrebnu procesorsku energiju) i obično se implementira u obliku niza optimizacionih transformacija. Transformacije su izmene koje se vrše nad kodom kako bi se dobile željene performanse pri njegovom izvršavanju uz uslov da izmenjen kod mora da bude semantički ekvivalentan originalnom. Optimizacija petlji je veoma značajna zato što je procenat vremena koje programi pri izvršavanju provode u petljama veliki. Iz tog razloga ćemo se u ovom poglavlju većim delom koncentrisati na njih.  \\
+Optimizacija koda u okviru procesa kompilacije ima za cilj da minimizuje ili maksimizuje određena svojstva izvršnog koda programa (npr. potrebnu procesorsku energiju) i obično se implementira u obliku niza optimizacionih transformacija. Transformacije su izmene koje se vrše nad kodom kako bi se dobile željene performanse pri njegovom izvršavanju uz uslov da izmenjen kod mora da bude semantički ekvivalentan originalnom. Optimizacija petlji je veoma značajna zato što je procenat vremena koje programi pri izvršavanju provode u petljama veliki. Iz tog razloga ćemo se u ovom poglavlju većim delom koncentrisati na njih.  \\
 
 \textbf{Odmotavanje petlji} (eng. loop unrolling). Koristi se za smanjivanje vremena koje je potrebno za
 izvršavanje petlje po cenu povećavanja veličine koda koji joj odgovara. Cilj je da se u petlji
