@@ -1,0 +1,391 @@
+
+
+ % !TEX encoding = UTF-8 Unicode
+
+\documentclass[a4paper]{report}
+
+\usepackage[T2A]{fontenc} % enable Cyrillic fonts
+\usepackage[utf8x,utf8]{inputenc} % make weird characters work
+\usepackage[serbian]{babel}
+%\usepackage[english,serbianc]{babel}
+\usepackage{amssymb}
+
+\usepackage{color}
+\usepackage{url}
+\usepackage[unicode]{hyperref}
+\hypersetup{colorlinks,citecolor=green,filecolor=green,linkcolor=blue,urlcolor=blue}
+
+\newcommand{\odgovor}[1]{\textcolor{blue}{#1}}
+
+\begin{document}
+
+\title{Dopunite naslov svoga rada\\ \small{Dopunite autore rada}}
+
+\maketitle
+
+\tableofcontents
+
+\chapter{Uputstva}
+\emph{Prilikom predavanja odgovora na recenziju, obrišite ovo poglavlje.}
+
+Neophodno je odgovoriti na sve zamerke koje su navedene u okviru recenzija. Svaki odgovor pišete u okviru okruženja \verb"\odgovor", \odgovor{kako bi vaši odgovori bili lakše uočljivi.} 
+\begin{enumerate}
+
+\item Odgovor treba da sadrži na koji način ste izmenili rad da bi adresirali problem koji je recenzent naveo. Na primer, to može biti neka dodata rečenica ili dodat pasus. Ukoliko je u pitanju kraći tekst onda ga možete navesti direktno u ovom dokumentu, ukoliko je u pitanju duži tekst, onda navedete samo na kojoj strani i gde tačno se taj novi tekst nalazi. Ukoliko je izmenjeno ime nekog poglavlja, navedite na koji način je izmenjeno, i slično, u zavisnosti od izmena koje ste napravili. 
+
+\item Ukoliko ništa niste izmenili povodom neke zamerke, detaljno obrazložite zašto zahtev recenzenta nije uvažen.
+
+\item Ukoliko ste napravili i neke izmene koje recenzenti nisu tražili, njih navedite u poslednjem poglavlju tj u poglavlju Dodatne izmene.
+\end{enumerate}
+
+Za svakog recenzenta dodajte ocenu od 1 do 5 koja označava koliko vam je recenzija bila korisna, odnosno koliko vam je pomogla da unapredite rad. Ocena 1 označava da vam recenzija nije bila korisna, ocena 5 označava da vam je recenzija bila veoma korisna. 
+
+NAPOMENA: Recenzije ce biti ocenjene nezavisno od vaših ocena. Na osnovu recenzije ja znam da li je ona korisna ili ne, pa na taj način vama idu negativni poeni ukoliko kažete da je korisno nešto što nije korisno. Vašim kolegama šteti da kažete da im je recenzija korisna jer će misliti da su je dobro uradili, iako to zapravo nisu. Isto važi i na drugu stranu, tj nemojte reći da nije korisno ono što jeste korisno. Prema tome, trudite se da budete objektivni. 
+\chapter{Recenzent \odgovor{--- ocena:} }
+
+
+\section{O čemu rad govori?}
+% Напишете један кратак пасус у којим ћете својим речима препричати суштину рада (и тиме показати да сте рад пажљиво прочитали и разумели). Обим од 200 до 400 карактера.
+Rad opisuje postupak iterativne kompilacije. Fokus je na aspekatu optimizacije programa koji je glavni cilj postojanja ovog pristupa. Navode se metode transformacije koje predstavljaju izmene kôda koje možemo izvršiti kako bi dobili efikasnije performanse bez promene rezultata samog programa. Opisani su algoritmi pretrage koje koristimo da pronađemo najefikasniju iteraciju. Na kraju je dat primer jednog eksperimenta i rezultati gde je primenjena ova tehnika.
+
+\section{Krupne primedbe i sugestije}
+% Напишете своја запажања и конструктивне идеје шта у раду недостаје и шта би требало да се промени-измени-дода-одузме да би рад био квалитетнији.
+
+\textit{Poglavlje 1.} Možda je subjektivno ali uvod se čini predugačkim. Iterativna kompilacija se spominje tek na kraju petog pasusa. Moja preporuka je da se uvodna priča skrati i više fokusira na samu kompilaciju programa i po čemu se iterativna izdvaja od uobičajenog pristupa. Razumem da ste hteli da date motivaciju za ovu tehniku i iz tog ugla dato zapažanje je korektno. Ukoliko je ovo samo moje zapažanje onda smatram da se može zanemariti. \\
+
+\textit{Poglavlje 1 i 2.} Neke opšte informacije o kompilaciji nisu date. Umesto dugog uvoda bolje bi poslužio kratak opis postupka kompilacije (leksička, sintaksna i semantička analiza, zatim generisanje, optimizacija međukôda i generisanje mašinskog kôda). Zatim objasiti gde u tom postupku iterativna kompilacija se razlikuje od uobičajenog postupka. A tek onda preći na opis transformacija kôda. Pod pretpostavkom da je čitalac upoznat sa postupkom kompilacije ovo bi se možda moglo zanemariti ali mislim da je bolje imati takvo pojašnjenje. \\
+
+\textit{Poglavlje 2.} Fokus je samo na optimizaciji petlji i ne spominju se neke druge transformacije. U uvodu jeste rečeno: ,,Koncentrišemo se (naravno) na one transformacije koje su konfigurabilne.'' ali se to u ovom poglavlju ne spominje. Takođe ako je to razlog zbog kojeg se fokusiramo samo na petlje onda to treba reći (ovde pre nego u uvodu) i opravdati na neki način. Bilo sa objašnjenjem ili sa referencom na rad koji je to potvrdio. Optimizacije kao što su alokacija i dodela registara ili izbor instrukcija je moguće vršiti na više načina. Pitanje postoji da li su one i u kolikoj meri konfigurabilne na način koji odgovara iterativnom postupku kompilacije, ali to je nešto na šta rad treba da odgovori. \\
+
+\textit{Poglavlje 4.} Jedno od pitanja koje je zadato uz temu je bilo: ,,Koje su mogućnosti iterativne kompilacije kao tehnike uštede energije?''. Međutim u poglavlju 4 kada su dati rezultati jednog istraživanja o iterativnoj kompilaciji, energetska potrošnja se nigde ne spominje. U sažetku i uvodu je rečeno da je urađeno takvno poređenje ali ono nigde nije spomenuto do zaključka gde se tvrdi da ova tehnika dovodi do manje upotrebe energije (ali kao što je već pomenuto to nije rečeno u radu). Sve slike i grafici koji su dati u poglavlju 4 se odnose na poboljšanje performansi. Istraživanje koje je ovde referisano ne govori o energetskoj efikasnosti u svom radu. \\
+
+\section{Sitne primedbe}
+% Напишете своја запажања на тему штампарских-стилских-језичких грешки
+\begin{enumerate}
+	\item \textit{Poglavlje 1 (prvi pasus).} Napisano je ''pametni'' sa gornjim navodnicima na početku. Prepraviti u ,,pametni'' gde su donji navodnici na početku.
+	\item \textit{Poglavlje 1 (peti pasus).} Napisano je ''Iterativna kompilacija'' sa gornjim navodnicima na početku. Prepraviti u ,,Iterativna kompilacija'' gde su donji navodnici na početku.
+	\item \textit{Poglavlje 3.1 (pasus ,,Podela petlji'').} Oznaka za fusnotu za ,,loop buffer'' je u narednom redu. Ukloniti razmak između zagrade i \verb!\footnote! u Latex-u kako bi se rešio problem. Takođe pošto se fusnota odnosi na pojam ,,loop buffer'' onda je treba staviti unutar zagrade ili još bolje uz tekst ,,baferi petlji''. Takođe fali tačka na kraju te rečenice.
+	\item \textit{Poglavlje 3.} Reference su stavljane posle tačke i stoje na početku naredne rečenice. Prepraviti ih da stoje na kraju rečenice pre tačke.
+	\item \textit{Poglavlje 3.1 (prvi pasus).} Nema tačke na kraju pasusa. Potrebno je dodati tačku.
+	\item \textit{Poglavlje 3.1 (pasus ,,Pretraga mreže'').} Nema tačke na kraju pasusa. Potrebno je dodati tačku.
+	\item \textit{Poglavlje 3.1 (pasus ,,Pretraga mreže'').} Polednja rečenica se završava sa: ,,...se može videti na Slika 1''. Prepraviti u: ,,...se može videti na slici 1.''
+	\item \textit{Poglavlje 4 (prvi pasus).} Ne postoji razmak između reči pre zagrade i same zagrade. Potrebno je dodati ga.
+	\item \textit{Poglavlje 4 (prvi pasus).} Rečenica: ,,Odluka da nekoj transformaciji treba dati prednost u odnosu na drugu, kod statičke kompilacije, donosi \textbf{si} se na osnovu predefinisanog skupa ocena.'', sadrži reč viška. Ukolinti reč ,,si''.
+\end{enumerate}
+
+\section{Provera sadržajnosti i forme seminarskog rada}
+% Oдговорите на следећа питања --- уз сваки одговор дати и образложење
+
+\begin{enumerate}
+\item Da li rad dobro odgovara na zadatu temu?\\
+Da, osim u slučaju poslednjeg pitanja koje se odnosilo na mogućnost uštede energije. Ostala pitanja su odgovorena i obrazložena.
+\item Da li je nešto važno propušteno?\\
+Ukoliko smatramo energetsku efikasnost bitnom onda je odgovor da. Međutim ovakva istraživanja se uglavnom fokusiraju na same performanse dobijenog rezultata koji se često smatra najbitnijim. Ovo više zavisi od zahteva čitalaca. U mom slučaju odgovor je ne. Pod opštom pretpostavkom program koji ima bolje performanse imaće i bolju energetsku efikasnost. Iz tog ugla možemo reći da je dat odgovor i na ovo pitanje.
+\item Da li ima suštinskih grešaka i propusta?\\
+Dva propusta. Jedan je već spomenuta ušteda energije. Drugi je nedostatak argumenta za korišćenje samo optimizacije petlji kao jedinu metodu transformacije. Što se ostatka tiče rad je dobro opisao i približio postupak iterativne kompilacije čitaocu
+\item Da li je naslov rada dobro izabran?\\
+Da. Naslov je u potpunosti adekvatan.
+\item Da li sažetak sadrži prave podatke o radu?\\
+Da, osim već spomenute uštede energije.
+\item Da li je rad lak-težak za čitanje?\\
+Rad je jasan i lepo napisan. Nije težak za čitanje.
+\item Da li je za razumevanje teksta potrebno predznanje i u kolikoj meri?\\
+S obzirom da nije opisan postupak kompilacije pretpostavlja se od čitaoca da je upoznat sa osnovnim konceptima kompilacije programskih jezika. Sam naslov spominje iterativnu kompilaciju što je nagoveštaj da je ova oblast potrebna. 
+\item Da li je u radu navedena odgovarajuća literatura?\\
+Da. Literatura koja se koristi jeste navedena pravilno.
+\item Da li su u radu reference korektno navedene?\\
+Da. Sve reference su korektno navedene.
+\item Da li je struktura rada adekvatna?\\
+Da. Struktura rada je zadovoljavajuća. Međutim predlažem dodatak oblasti o opštim konceptima o kompilaciji kao što je već spomenuto u krupnim primedbama.
+\item Da li rad sadrži sve elemente propisane uslovom seminarskog rada (slike, tabele, broj strana...)?\\
+Ne. Rad ne sadrži tabelu, ali zato sadrži dosta slika i grafika kao i delova sa izvornim kôdom tako da se nedostatak tabele može zanemariti. Međutim nije ispoštovan neophodan broj referenci. U literaturi su navedena četiri rada koja su referisana sedam puta. Minimum je bio 10.
+\item Da li su slike i tabele funkcionalne i adekvatne?\\
+Da. Sve slike i table su u potpunosti zadovoljavajuće.
+\end{enumerate}
+
+\section{Ocenite sebe}
+% Napišite koliko ste upućeni u oblast koju recenzirate: 
+% a) ekspert u datoj oblasti
+% b) veoma upućeni u oblast
+c) srednje upućeni
+% d) malo upućeni 
+% e) skoro neupućeni
+% f) potpuno neupućeni
+% Obrazložite svoju odluku
+
+Poprilično detaljno sam upoznat sa kompilacijom programskih jezika najviše zahvaljujući kursu Konstrukcija kompilatora. Praktični deo kursa se sastojao od pisanja funkcionalnih kompajlera za manje prostije jezike. Teorijski deo se u dobrom delu sastojao od načina na koji se vrši prevođenje kôda i raznih optimizacija. Kada je u pitanju iterativna kompilacija mogu reći da sam samo čuo za oblast i princip u osnovi (zbog čeka sam izabrao ocenu c) ). Međutim smatram da mogu adekvatno da procenim dati rad.
+
+
+
+\chapter{Recenzent \odgovor{--- ocena:} }
+
+
+\section{O čemu rad govori?}
+% Напишете један кратак пасус у којим ћете својим речима препричати суштину рада (и тиме показати да сте рад пажљиво прочитали и разумели). Обим од 200 до 400 карактера.
+
+Rad uvodi pojam \textit{iterativne kompilacije} i objašnjava kako se ona može koristiti za optimizaciju programa. Opisane tehnike upotrebljene su nad konkretnim podacima i prikazani su rezultati odnosno, kako su one uticale na poboljšanja u performansama. 
+
+\section{Krupne primedbe i sugestije}
+% Напишете своја запажања и конструктивне идеје шта у раду недостаје и шта би требало да се промени-измени-дода-одузме да би рад био квалитетнији.
+
+\label{sec: primedbe}
+
+\noindent Na kraju uvoda, kao i u delu 4.1, pominju se "reperi". Meni pojam nije poznat i smatram da nedostaje kratak opis i referenca za detalje o tome.
+\\
+\\
+Sekcija 2 nema nijednu referencu. Uvedeno je 5 pojmova i lepo su objašnjeni, ali potrebno je dodati literaturu koja to detaljnije opisuje.
+\\
+\\
+Pogrešno referisanje u sekciji 3. Naime, za algoritme pretrage navedena je referenca [3] (Toru Kisuki, P Knijnenburg, M O'Boyle, and H Wijshoff. Iterative compilation in program optimization) međutim, u tom radu nema ništa na tu temu dok, u radu Iterative Compilation - P.M.W. Knijnenburg1, T. Kisuki, and M.F.P. O'Boyle, koji je zadat kao početna literatura a nije naveden u literaturi uopšte, nalaze se pomenuti algoritmi i rezultati vezani za njihovu primenu nad konkretnim podacima.
+\\
+\\
+Deo 4.1 poprilično liči na sekcije 3 i 4 u radu  [3] (Toru Kisuki, P Knijnenburg, M O'Boyle, and H Wijshoff. Iterative compilation in program optimization). Referenca je navedena na samom početku i naglašeno je da su rezultati preuzeti iz tog rada. Međutim, preuzet je i sam tekst. Umesto da je prepričan i na taj način sažet, delovi teksta su prevedeni i samo ubačeni u rad. Potrebno je da se to malo bolje napiše, svojim rečima.
+\\
+\\
+U sažetku i uvodu je navedeno da u radu postoji poređenje potrošnje energije. Potrošnja energije se provlači kroz rad, ali poređenja sa statički kompiliranim programima nema. Smatram da je potrebno da se još nešto napiše na tu temu.
+
+\section{Sitne primedbe}
+% Напишете своја запажања на тему штампарских-стилских-језичких грешки
+
+\noindent U radu se na više mesta pominju termini \textit{‚‚kompilacija''} i \textit{‚‚kompajliranje''}. U sažetku se javljaju oba. Pošto naslov i tema sadrže reč \textit{‚‚kompilacija''} onda treba svuda koristiti taj termin radi konzistentnosti.
+\\
+\\
+U sekciji 3, citiranje je stavljeno nakon tačke dok je na svim ostalim mestima u radu stavljeno u okviru rečenice, odnosno, pre tačke.
+\\
+\\
+U delu 3.1 fale tačka na kraju poslednje rečenice prvog i trećeg pasusa. Zatim, u trećem pasusu piše \textit{‚‚... na Slika 1''}. Potrebno je prepraviti to u \textit{‚‚... na slici 1''}. Poslednji pasus ove sekcije sadrži samo jednu rečenicu - potrebno je dopuniti ga!
+
+
+\section{Provera sadržajnosti i forme seminarskog rada}
+% Oдговорите на следећа питања --- уз сваки одговор дати и образложење
+
+\begin{enumerate}
+\item Da li rad dobro odgovara na zadatu temu?\\
+	\noindent Da. Tema je odlično obrađena.
+
+\item Da li je nešto važno propušteno?\\
+	\noindent Ne.
+
+\item Da li ima suštinskih grešaka i propusta?\\
+	\noindent Nema.
+
+\item Da li je naslov rada dobro izabran?\\
+	\noindent Jeste. Naslov odgovara sadržaju rada i samoj temi.
+
+\item Da li sažetak sadrži prave podatke o radu?\\
+	\noindent Redosled rečenica u sažetku ne odgovara redosledu sekcija u radu. Takođe, poslednje dve rečenice sažetka nisu potkrepljene tekstom rada.
+
+\item Da li je rad lak-težak za čitanje?\\
+	\noindent Rad je lak za čitanje.
+
+\item Da li je za razumevanje teksta potrebno predznanje i u kolikoj meri?\\
+	\noindent Potrebno je osnovno predznanje iz programiranja.
+
+\item Da li je u radu navedena odgovarajuća literatura?\\
+	\noindent Nije. Već je napomenuto u sekciji \ref{sec: primedbe} da nedostaje literatura za sekciju 3.
+
+\item Da li su u radu reference korektno navedene?\\
+	\noindent Nisu sve. U sekciji \ref{sec: primedbe} je već objašnjeno koje reference nisu u redu.
+
+\item Da li je struktura rada adekvatna?\\
+	\noindent Da.
+
+\item Da li rad sadrži sve elemente propisane uslovom seminarskog rada (slike, tabele, broj strana...)?\\
+	\noindent Ne. Pre svega, fali tabela. Zatim, rad ima samo 4 reference, a potrebno je da ima najmanje 10. Broj strana i slika su u redu.
+
+\item Da li su slike i tabele funkcionalne i adekvatne?\\
+	\noindent Slika 1 je lošeg kvaliteta, ostale su redu. Tabela ne postoji. 
+
+\end{enumerate}
+
+\section{Ocenite sebe}
+% Napišite koliko ste upućeni u oblast koju recenzirate: 
+% a) ekspert u datoj oblasti
+% b) veoma upućeni u oblast
+% c) srednje upućeni
+% d) malo upućeni 
+% e) skoro neupućeni
+% f) potpuno neupućeni
+% Obrazložite svoju odluku
+
+Moram odabrati odgovor f) potpuno neupućeni. Ova tema nije obrađivana u okviru nastave na fakultetu, a oblast ne spada u domen mog interesovanja.
+
+
+\chapter{Recenzent \odgovor{--- ocena:} }
+
+
+\section{O čemu rad govori?}
+Analizirani rad se bavi temom iterativne kompilacije i objašnjava šta taj proces podrazumeva, koja mu je osnovna primena, kao i šta su njene glavne pogodnosti kao tehnike koja se koristi u programiranju. 
+
+\section{Krupne primedbe i sugestije}
+Rad je napisan pismeno, opisani proces je razrađen i objašnjen u dovoljnoj meri da nam je o njoj izneto dovoljno detalja, a da se pritom ne odstupa od suštine zadatka. Nemam primedbi.
+
+\section{Sitne primedbe}
+Relativno male rezolucije slika u prilogu (s pretpostavkom da je to najbolja rezolucija dostupnih slika) nemam primedbi.
+
+\section{Provera sadržajnosti i forme seminarskog rada}
+
+\begin{enumerate}
+\item Da li rad dobro odgovara na zadatu temu?\\
+Da, rad u celosti odgovara na zadatu temu.
+\item Da li je nešto važno propušteno?\\
+U istraživanju su obrađene stavke iz zadatka, a to podrazumeva da je objašnjeno šta je iterativna kompilacija kao i koja je njena osnovna primena, koje njene tehnike daju najbolje rezultate u određenim okolnostima, kao i koje su njene mogućnosti kao metodi za uštedu energije.
+\item Da li ima suštinskih grešaka i propusta?\\
+Nisam pronašla suštinske greške i propuste u istraživanju i radu.
+\item Da li je naslov rada dobro izabran?\\
+Naslov je adekvatan za obrađivanu temu.
+\item Da li sažetak sadrži prave podatke o radu?\\
+Sažetak sumira prethodno razrađeni tekst i ističe njegovu suštinu.
+\item Da li je rad lak-težak za čitanje?\\
+Rad nije naporan za čitanje.
+\item Da li je za razumevanje teksta potrebno predznanje i u kolikoj meri?\\
+Potrebno je osnovno predznanje pojmova iz informatike da bi rad mogao u celosti da se razume i prati, međutim, predzanje o samoj tematici nije neophodno da bi tekst bio shvaćen.
+\item Da li je u radu navedena odgovarajuća literatura?\\
+Jeste.
+\item Da li su u radu reference korektno navedene?\\
+Jesu.
+\item Da li je struktura rada adekvatna?\\
+Ispoštovani su svi uslovi za izradu seminarskog rada.
+\item Da li rad sadrži sve elemente propisane uslovom seminarskog rada (slike, tabele, broj strana...)?\\
+Da, sadrži dovoljan broj strana, veliki broj slika i primera.
+\item Da li su slike i tabele funkcionalne i adekvatne?\\
+Jesu, sve slike sve jasno opisuju.
+\end{enumerate}
+
+\section{Ocenite sebe}
+Ocenila bih sebe kao ,,srednje upućenu" osobu u ovoj oblasti.
+
+
+\chapter{Recenzent \odgovor{--- ocena:} }
+
+
+\section{O čemu rad govori?}
+% Напишете један кратак пасус у којим ћете својим речима препричати суштину рада (и тиме показати да сте рад пажљиво прочитали и разумели). Обим од 200 до 400 карактера.
+U radu je opisan metod iterativne kompilacije i dato opravdanje za njegovo korišćenje. Objašnjene su neke od tehnika optimizacije koda, potkrepljene primerima, i dat je uporedni prikaz performansi izvršavanja programa koji su kompajlirani statički i korišćenjem ove metode. 
+
+\section{Krupne primedbe i sugestije}
+% Напишете своја запажања и конструктивне идеје шта у раду недостаје и шта би требало да се промени-измени-дода-одузме да би рад био квалитетнији.
+ 
+
+U delu „Metode transformacija”, prvi pasus počinje rečenicom da optimizacija kompilatora ima neki cilj. To bi moglo da se protumači na pogrešan način. Mislim da bi jasnije i ispravnije bilo napisati da metode (tehnike) optimizacije imaju neki cilj, i da te metode optimizacije vrše određene transformacije koda koji im je prosleđen.
+
+\section{Sitne primedbe}
+% Напишете своја запажања на тему штампарских-стилских-језичких грешки
+Postoji greška u naslovu seminarskog rada, jer su reči „iterativnu” i „kompilaciju” napisane velikim početnim slovima.
+
+U prvoj rečenici četvrtog pasusa treba staviti razmak ispred zagrade.
+
+\section{Provera sadržajnosti i forme seminarskog rada}
+% Oдговорите на следећа питања --- уз сваки одговор дати и образложење
+
+\begin{enumerate}
+\item Da li rad dobro odgovara na zadatu temu?\\
+Rad dobro odgovara na zadatu temu jer daje odgovore na sva postavljena pitanja sadržana u opisu teme. 
+\item Da li je nešto važno propušteno?\\
+Ništa važno nije propušteno, rad je sadržajan i bogat korisnim informacijama.
+\item Da li ima suštinskih grešaka i propusta?\\
+Rad nema suštinskih grešaka i propusta. U nastavku bih rekao isto što i za prethodno pitanje.
+\item Da li je naslov rada dobro izabran?\\
+Naslov rada dobro opisuje tematiku razrađenu u okviru rada i saglasan je sa nazivom teme.
+\item Da li sažetak sadrži prave podatke o radu?\\
+Sažetak sadrži precizan opis svega o čemu se u radu govorilo.
+\item Da li je rad lak-težak za čitanje?\\
+Rad je lak za čitanje. Čitljivosti doprinosi i postojanje odgovarajućih primera.
+\item Da li je za razumevanje teksta potrebno predznanje i u kolikoj meri?\\
+Za razumevanje teksta nije potrebno predznanje, ukoliko je čitalac upućen u osnovne koncepte programiranja.
+\item Da li je u radu navedena odgovarajuća literatura?\\
+U radu je navedena odgovarajuća literatura.
+\item Da li su u radu reference korektno navedene?\\
+U radu su reference korektno navedene.
+\item Da li je struktura rada adekvatna?\\
+Struktura rada prati smernice obrađene na predavanjima.
+\item Da li rad sadrži sve elemente propisane uslovom seminarskog rada (slike, tabele, broj strana...)?\\
+Broj strana i slike odgovaraju zahtevima, ali rad ne sadrži nijednu tabelu i ima nedovoljan broj referenci.
+\item Da li su slike i tabele funkcionalne i adekvatne?\\
+Slike su pregledne i adekvatne, ali tabele nisu prisutne.
+\end{enumerate}
+
+\section{Ocenite sebe}
+% Napišite koliko ste upućeni u oblast koju recenzirate: 
+% a) ekspert u datoj oblasti
+% b) veoma upućeni u oblast
+% c) srednje upućeni
+% d) malo upućeni 
+% e) skoro neupućeni
+% f) potpuno neupućeni
+% Obrazložite svoju odluku
+Srednje sam upućen u ovu oblast. Upoznat sam sa određenim tehnikama optimizacije koje se sprovode nad međukodom.
+
+\chapter{Recenzent \odgovor{--- ocena:} }
+
+
+\section{O čemu rad govori?}
+% Напишете један кратак пасус у којим ћете својим речима препричати суштину рада (и тиме показати да сте рад пажљиво прочитали и разумели). Обим од 200 до 400 карактера.
+Iterativno kompajliranje nam može dosta doprineti u brzini izvršavanja programa. To je dodatni sloj u kompajliranju. Izvršava se optimizacija koda ali na nefiksirani način kao kod statičkih kompajlera, nego sa mogućnosti odabira parametara i samog načina za transformaciju koda. Iako se kod izvršava brže, moramo biti svesni da je ovo sporiji način kompajliranja.
+
+\section{Krupne primedbe i sugestije}
+% Напишете своја запажања и конструктивне идеје шта у раду недостаје и шта би требало да се промени-измени-дода-одузме да би рад био квалитетнији.
+Uvod treba malo smanjiti i neki deo iz njega, recimo za arhitekturu, pomenuti u nekom drugom delu.
+
+\section{Sitne primedbe}
+% Напишете своја запажања на тему штампарских-стилских-језичких грешки
+Nisam primetila ovakve greške.
+
+\section{Provera sadržajnosti i forme seminarskog rada}
+% Oдговорите на следећа питања --- уз сваки одговор дати и образложење
+
+\begin{enumerate}
+\item Da li rad dobro odgovara na zadatu temu?\\
+Dobro odgovara temi, daje uvid u to šta je iterativna kompilacija, a i primer i način kako se ona izvršava i koje se ubrzanje može postići. 
+
+\item Da li je nešto važno propušteno?\\
+Nije.
+
+\item Da li ima suštinskih grešaka i propusta?\\
+Mislim da ne.
+
+\item Da li je naslov rada dobro izabran?\\
+Jeste.
+
+\item Da li sažetak sadrži prave podatke o radu?\\
+Sadrži prave podatke.
+
+\item Da li je rad lak-težak za čitanje?\\
+Rad se lako čita.
+
+\item Da li je za razumevanje teksta potrebno predznanje i u kolikoj meri?\\
+Razumevanju bi doprinelo predznanje o optimizaciji koju vrše statički kompilatori.
+
+\item Da li je u radu navedena odgovarajuća literatura?\\
+Jeste.
+
+\item Da li su u radu reference korektno navedene?\\
+Da.
+
+\item Da li je struktura rada adekvatna?\\
+Jeste.
+
+\item Da li rad sadrži sve elemente propisane uslovom seminarskog rada (slike, tabele, broj strana...)?\\
+Nedostaje tabela i ima ispod 10 referenci u tekstu.
+
+\item Da li su slike i tabele funkcionalne i adekvatne?\\
+Jesu. Odgovaraju onome o čemu je pisano.
+
+\end{enumerate}
+
+\section{Ocenite sebe}
+% Napišite koliko ste upućeni u oblast koju recenzirate: 
+% a) ekspert u datoj oblasti
+% b) veoma upućeni u oblast
+% c) srednje upućeni
+% d) malo upućeni 
+% e) skoro neupućeni
+% f) potpuno neupućeni
+% Obrazložite svoju odluku
+
+C, slušala sam predmet koji je vezan za kompilatore i optimizaciju koda koju oni vrše.
+
+\chapter{Dodatne izmene}
+%Ovde navedite ukoliko ima izmena koje ste uradili a koje vam recenzenti nisu tražili. 
+
+\end{document}
