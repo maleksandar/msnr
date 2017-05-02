@@ -105,7 +105,7 @@ Od čitaoca se očekuje osnovno poznavanje procesa prevođenja programskih jezik
 
 Optimizacija koda u okviru procesa kompilacije ima za cilj da minimizuje ili maksimizuje određena svojstva izvršnog koda programa (npr. potrebnu procesorsku energiju) i obično se implementira u obliku niza optimizacionih transformacija. Transformacije su izmene koje se vrše nad kodom kako bi se dobile željene performanse pri njegovom izvršavanju uz uslov da izmenjen kod mora da bude semantički ekvivalentan originalnom. Optimizacija petlji je veoma značajna zato što je procenat vremena koje programi pri izvršavanju provode u petljama veliki. Iz tog razloga ćemo se u ovom poglavlju većim delom koncentrisati na njih.  \\
 
-\textbf{Odmotavanje petlji} (eng. loop unrolling). Koristi se za smanjivanje vremena koje je potrebno za
+\textbf{Odmotavanje petlji} (eng. loop unrolling)\cite{muchnick1997advanced}.  Koristi se za smanjivanje vremena koje je potrebno za
 izvršavanje petlje po cenu povećavanja veličine koda koji joj odgovara. Cilj je da se u petlji
 smanji broj instrukcija koje se vezuju za kontrolu toka petlje. Odmotavanje petlji obično ima
 veliki doprinos kada u telu petlje postoje naredbe koje su nezavisne, odnosno mogu da se
@@ -134,7 +134,7 @@ i verzija u kojoj je upotrebljeno odmotavanje:
 \end{lstlisting}
 
 
-\textbf{Podela na blokove} (eng. loop tiling). Telo petlje se deli na manje blokove kako bi se osiguralo
+\textbf{Podela na blokove} (eng. loop tiling) \cite{coleman1995tile}. Telo petlje se deli na manje blokove kako bi se osiguralo
 da lokalni podaci koji se u njemu koriste ostaju u keš memoriji sve dok ne budu opet bili potrebni.
 Doprinos se ogleda u smanjenom broju promašaja keš memorije, kao i energije memorijskog sistema koja
 bi bila utrošena na prikupljanje podataka sa alternativnih izvora.\\
@@ -167,7 +167,7 @@ i njemu odgovarajuća verzija koja deli prostor iteracije na blokove:
   }
 \end{lstlisting}
 
-\textbf{Podela petlji} (eng. loop fission). Telo petlje se deli na dve ili više različitih petlji. 
+\textbf{Podela petlji} (eng. loop fission)\cite{muchnick1997advanced}.  Telo petlje se deli na dve ili više različitih petlji. 
 Doprinos je u ovom slučaju smanjenje broja promašaja instrukcijske keš memorije i stvaranje mogućnosti da se, 
 ukoliko su tela novonastalih petlji dovoljno mala, 
 koriste baferi petlji (eng. loop buffer\footnote{Bafer petlje je mala, jako brza memorija koja čuva određen broj vremenski skoro korišćenih naredbi. Ukoliko je bafer petlje dovoljno veliki da sadrži sve naredbe tela petlje, onda je potrebno samo jednom uzeti te informacije iz memorije, i to pri prvoj iteraciji \cite{stallings2000computer}}) Negativna posledica podele petlji je povećana potreba za energijom memorijskog sistema usled smanjenja vremenske lokalnosti podataka (eng. temporal locality).\\
@@ -189,12 +189,12 @@ koju delimo na dve petlje sa po jednom naredbom koje imaju isti opseg:
     b[i] = 2;
 \end{lstlisting}
 
-\textbf{Spajanje petlji} (eng. loop fusion). Predstavlja transformaciju suprotnu podeli petlji. Kombinuje tela dve ili više petlji koje imaju iste
+\textbf{Spajanje petlji} (eng. loop fusion)\cite{muchnick1997advanced}.  Predstavlja transformaciju suprotnu podeli petlji. Kombinuje tela dve ili više petlji koje imaju iste
 granice u jednu. Ukoliko petlje koje spajamo koriste iste podatke, ovom transformacijom povećavamo
 njihovu lokalnost. Smanjenjem broja instrukcija koje se koriste za logiku kontrole toka umanjuje se 
 i potrebna ukupna procesorska energija.\\
 
-\textbf{Popunjavanje niza} (eng. array padding) postavlja dimenziju niza na novu vrednost. Niz mora biti lokalna varijabla, a njegova dimenzija konstantna vrednost.
+\textbf{Popunjavanje niza} (eng. array padding) \cite{Arraypad92:online}. Postavlja dimenziju niza na novu vrednost. Niz mora biti lokalna varijabla, a njegova dimenzija konstantna vrednost.
 
 \section{Pretraga ulaznih parametara}
 \label{sec:pretraga}
@@ -213,9 +213,9 @@ lakše krećemo po prostoru pretrage, zato koristimo algoritme pretrage.
 Navešćemo sada neke algoritme pretrage uz načine njihovog funkcionisanja. 
 Primenu ovih algoritama nad konkretnim podacima kao i širi spisak možete videti u \cite{kisuki2000iterative}. \\
 
-\textbf{Genetski algoritam} (eng. genetic algorithm). Prvo se slučajnim izborom bira određen broj kombinacija koje proglašavamo početnom populacijom. Zatim se vrši ukrštanje različitih kombinacija, a nakon toga mutacija u željenoj meri. Na kraju se evaluira nova populacija i ukoliko nije dostignut cilj nastavlja se sa primenom algoritma.\\
+\textbf{Genetski algoritam} (eng. genetic algorithm) \cite{mitchell1998introduction}. Prvo se slučajnim izborom bira određen broj kombinacija koje proglašavamo početnom populacijom. Zatim se vrši ukrštanje različitih kombinacija, a nakon toga mutacija u željenoj meri. Na kraju se evaluira nova populacija i ukoliko nije dostignut cilj nastavlja se sa primenom algoritma.\\
 
-\textbf{Pretraga mreže} (eng. grid search). Predstavlja tradicionalni pristup problemu optimizacije većeg broja parametara (eng. hyperparameter optimization). 
+\textbf{Pretraga mreže} (eng. grid search) \cite{bergstra2012random,knijnenburg2002iterative}. Predstavlja tradicionalni pristup problemu optimizacije većeg broja parametara (eng. hyperparameter optimization). 
 Sastoji se od generisanja različitih tačaka unutar mreže koje su u stvari kombinacije različitih vrednosti parametara. 
 Ove tačke se testiraju i dalji rad algoritma pretrage se fokusira na prostor u okolini tačaka koje su se pokazale kao efikasne u tom trenutku. Grafički prikaz mreže tačaka i regiona polja pretrage koji su nam od značaja se može videti na slici \ref{fig:slika1}.\\
 
