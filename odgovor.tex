@@ -25,22 +25,6 @@
 
 \tableofcontents
 
-\chapter{Uputstva}
-\emph{Prilikom predavanja odgovora na recenziju, obrišite ovo poglavlje.}
-
-Neophodno je odgovoriti na sve zamerke koje su navedene u okviru recenzija. Svaki odgovor pišete u okviru okruženja \verb"\odgovor", \odgovor{kako bi vaši odgovori bili lakše uočljivi.} 
-\begin{enumerate}
-
-\item Odgovor treba da sadrži na koji način ste izmenili rad da bi adresirali problem koji je recenzent naveo. Na primer, to može biti neka dodata rečenica ili dodat pasus. Ukoliko je u pitanju kraći tekst onda ga možete navesti direktno u ovom dokumentu, ukoliko je u pitanju duži tekst, onda navedete samo na kojoj strani i gde tačno se taj novi tekst nalazi. Ukoliko je izmenjeno ime nekog poglavlja, navedite na koji način je izmenjeno, i slično, u zavisnosti od izmena koje ste napravili. 
-
-\item Ukoliko ništa niste izmenili povodom neke zamerke, detaljno obrazložite zašto zahtev recenzenta nije uvažen.
-
-\item Ukoliko ste napravili i neke izmene koje recenzenti nisu tražili, njih navedite u poslednjem poglavlju tj u poglavlju Dodatne izmene.
-\end{enumerate}
-
-Za svakog recenzenta dodajte ocenu od 1 do 5 koja označava koliko vam je recenzija bila korisna, odnosno koliko vam je pomogla da unapredite rad. Ocena 1 označava da vam recenzija nije bila korisna, ocena 5 označava da vam je recenzija bila veoma korisna. 
-
-NAPOMENA: Recenzije ce biti ocenjene nezavisno od vaših ocena. Na osnovu recenzije ja znam da li je ona korisna ili ne, pa na taj način vama idu negativni poeni ukoliko kažete da je korisno nešto što nije korisno. Vašim kolegama šteti da kažete da im je recenzija korisna jer će misliti da su je dobro uradili, iako to zapravo nisu. Isto važi i na drugu stranu, tj nemojte reći da nije korisno ono što jeste korisno. Prema tome, trudite se da budete objektivni. 
 \chapter{Recenzent \odgovor{--- ocena: 5 } }
 
 
@@ -53,26 +37,41 @@ Rad opisuje postupak iterativne kompilacije. Fokus je na aspekatu optimizacije p
 
 \textit{Poglavlje 1.} Možda je subjektivno ali uvod se čini predugačkim. Iterativna kompilacija se spominje tek na kraju petog pasusa. Moja preporuka je da se uvodna priča skrati i više fokusira na samu kompilaciju programa i po čemu se iterativna izdvaja od uobičajenog pristupa. Razumem da ste hteli da date motivaciju za ovu tehniku i iz tog ugla dato zapažanje je korektno. Ukoliko je ovo samo moje zapažanje onda smatram da se može zanemariti. \\
 \odgovor{ Uvod je smanjen za jedan paragraf koji je bio suvišan. Ipak, veći deo teksta je ostao jer su autori želeli da naglase motivaciju pre same implementacije ove metode. }
+\\
+
 \textit{Poglavlje 1 i 2.} Neke opšte informacije o kompilaciji nisu date. Umesto dugog uvoda bolje bi poslužio kratak opis postupka kompilacije (leksička, sintaksna i semantička analiza, zatim generisanje, optimizacija međukôda i generisanje mašinskog kôda). Zatim objasiti gde u tom postupku iterativna kompilacija se razlikuje od uobičajenog postupka. A tek onda preći na opis transformacija kôda. Pod pretpostavkom da je čitalac upoznat sa postupkom kompilacije ovo bi se možda moglo zanemariti ali mislim da je bolje imati takvo pojašnjenje. \\
 \odgovor{ Od čitaoca se očekuje osnovno znanje o prevođenju programskih jezika. Naš propust je bio u tome što to nismo eksplicitno naglasili. To smo u ovoj verziji ispravili dodavanjem ovog pojašnjenja na kraj uvoda. }
+\\
+
 \textit{Poglavlje 2.} Fokus je samo na optimizaciji petlji i ne spominju se neke druge transformacije. U uvodu jeste rečeno: ,,Koncentrišemo se (naravno) na one transformacije koje su konfigurabilne.'' ali se to u ovom poglavlju ne spominje. Takođe ako je to razlog zbog kojeg se fokusiramo samo na petlje onda to treba reći (ovde pre nego u uvodu) i opravdati na neki način. Bilo sa objašnjenjem ili sa referencom na rad koji je to potvrdio. Optimizacije kao što su alokacija i dodela registara ili izbor instrukcija je moguće vršiti na više načina. Pitanje postoji da li su one i u kolikoj meri konfigurabilne na način koji odgovara iterativnom postupku kompilacije, ali to je nešto na šta rad treba da odgovori. \\
+\odgovor{ U prvom paragrafu drugog poglavlja smo naveli razlog zbog kojeg se fokusiramo samo na transformacije petlji. Razlog je to
+		  što se najčešće veliki deo vremena potroši na izvršavanje petlji. }
+\\
 
 \textit{Poglavlje 4.} Jedno od pitanja koje je zadato uz temu je bilo: ,,Koje su mogućnosti iterativne kompilacije kao tehnike uštede energije?''. Međutim u poglavlju 4 kada su dati rezultati jednog istraživanja o iterativnoj kompilaciji, energetska potrošnja se nigde ne spominje. U sažetku i uvodu je rečeno da je urađeno takvno poređenje ali ono nigde nije spomenuto do zaključka gde se tvrdi da ova tehnika dovodi do manje upotrebe energije (ali kao što je već pomenuto to nije rečeno u radu). Sve slike i grafici koji su dati u poglavlju 4 se odnose na poboljšanje performansi. Istraživanje koje je ovde referisano ne govori o energetskoj efikasnosti u svom radu. \\
-\odgovor { Ovo poglavlje je sada dodato sa propratnim slikama i tabelama. }
+\odgovor { Dodato je poglavlje 4.2 sa propratnim slikama i tabelom koje adekvatno obrađuje temu. }
 \section{Sitne primedbe}
 % Напишете своја запажања на тему штампарских-стилских-језичких грешки
 \begin{enumerate}
 	\item \textit{Poglavlje 1 (prvi pasus).} Napisano je ''pametni'' sa gornjim navodnicima na početku. Prepraviti u ,,pametni'' gde su donji navodnici na početku.
+	      \odgovor{ Prepravljeno je na ,,pametni''.}
 	\item \textit{Poglavlje 1 (peti pasus).} Napisano je ''Iterativna kompilacija'' sa gornjim navodnicima na početku. Prepraviti u ,,Iterativna kompilacija'' gde su donji navodnici na početku.
+		  \odgovor{ Prepravljeno je na ,,Iterativna kompilacija''.}
 	\item \textit{Poglavlje 3.1 (pasus ,,Podela petlji'').} Oznaka za fusnotu za ,,loop buffer'' je u narednom redu. Ukloniti razmak između zagrade i \verb!\footnote! u Latex-u kako bi se rešio problem. Takođe pošto se fusnota odnosi na pojam ,,loop buffer'' onda je treba staviti unutar zagrade ili još bolje uz tekst ,,baferi petlji''. Takođe fali tačka na kraju te rečenice.
+		  \odgovor{ Greška je ispravljena. }
 	\item \textit{Poglavlje 3.} Reference su stavljane posle tačke i stoje na početku naredne rečenice. Prepraviti ih da stoje na kraju rečenice pre tačke.
+	      \odgovor{ Reference su stavljene na kraj rečenice pre tačke. }
 	\item \textit{Poglavlje 3.1 (prvi pasus).} Nema tačke na kraju pasusa. Potrebno je dodati tačku.
+		  \odgovor{ Tačka je dodata na kraj pasusa. }
 	\item \textit{Poglavlje 3.1 (pasus ,,Pretraga mreže'').} Nema tačke na kraju pasusa. Potrebno je dodati tačku.
+		  \odgovor{ Tačka je dodata na kraj pasusa. }
 	\item \textit{Poglavlje 3.1 (pasus ,,Pretraga mreže'').} Polednja rečenica se završava sa: ,,...se može videti na Slika 1''. Prepraviti u: ,,...se može videti na slici 1.''
+	      \odgovor{ Prepravljeno je na ,,... se može videti na slici 1.''.}
 	\item \textit{Poglavlje 4 (prvi pasus).} Ne postoji razmak između reči pre zagrade i same zagrade. Potrebno je dodati ga.
+          \odgovor{ Dodat je razmak između reči pre zagrade i same zagrade. }
 	\item \textit{Poglavlje 4 (prvi pasus).} Rečenica: ,,Odluka da nekoj transformaciji treba dati prednost u odnosu na drugu, kod statičke kompilacije, donosi \textbf{si} se na osnovu predefinisanog skupa ocena.'', sadrži reč viška. Ukolinti reč ,,si''.
+		  \odgovor{ Greška je ispravljena. }
 \end{enumerate}
-\odgovor { Ispravljene su sintaksne greške. }
 \section{Provera sadržajnosti i forme seminarskog rada}
 % Oдговорите на следећа питања --- уз сваки одговор дати и образложење
 
@@ -131,33 +130,46 @@ Rad uvodi pojam \textit{iterativne kompilacije} i objašnjava kako se ona može 
 \label{sec: primedbe}
 
 \noindent Na kraju uvoda, kao i u delu 4.1, pominju se "reperi". Meni pojam nije poznat i smatram da nedostaje kratak opis i referenca za detalje o tome.
-\odgovor{"Reperi" su najpribližniji prevod pojma ,,Benchmark''. Ovo pojašnjenje je dodato fusnotom u rad. }
+\\
+\odgovor{,,Reperi'' predstavljaju najpribližniji prevod pojma ,,Benchmark''. Ovo pojašnjenje je dodato fusnotom u rad. }
 \\
 \\
 Sekcija 2 nema nijednu referencu. Uvedeno je 5 pojmova i lepo su objašnjeni, ali potrebno je dodati literaturu koja to detaljnije opisuje.
+\\
 \odgovor{Reference su dodate. }
 \\
 \\
 Pogrešno referisanje u sekciji 3. Naime, za algoritme pretrage navedena je referenca [3] (Toru Kisuki, P Knijnenburg, M O'Boyle, and H Wijshoff. Iterative compilation in program optimization) međutim, u tom radu nema ništa na tu temu dok, u radu Iterative Compilation - P.M.W. Knijnenburg1, T. Kisuki, and M.F.P. O'Boyle, koji je zadat kao početna literatura a nije naveden u literaturi uopšte, nalaze se pomenuti algoritmi i rezultati vezani za njihovu primenu nad konkretnim podacima.
+\\
 \odgovor{Propust uočen i ispravljen.}
 \\
 \\
 Deo 4.1 poprilično liči na sekcije 3 i 4 u radu  [3] (Toru Kisuki, P Knijnenburg, M O'Boyle, and H Wijshoff. Iterative compilation in program optimization). Referenca je navedena na samom početku i naglašeno je da su rezultati preuzeti iz tog rada. Međutim, preuzet je i sam tekst. Umesto da je prepričan i na taj način sažet, delovi teksta su prevedeni i samo ubačeni u rad. Potrebno je da se to malo bolje napiše, svojim rečima.
 \\
+\odgovor{Sekcija 4.1 predstavlja prikaz rezultata testiranja uz minimalnu analizu samih testova i to je čini nezgodnim za samostalnu
+		 interpretaciju.}
+\\
 \\
 U sažetku i uvodu je navedeno da u radu postoji poređenje potrošnje energije. Potrošnja energije se provlači kroz rad, ali poređenja sa statički kompiliranim programima nema. Smatram da je potrebno da se još nešto napiše na tu temu.
+\\
+\odgovor{Dodata je sekcija 4.2 koja obrađuje ovu temu.}
 
 \section{Sitne primedbe}
 % Напишете своја запажања на тему штампарских-стилских-језичких грешки
 
 \noindent U radu se na više mesta pominju termini \textit{‚‚kompilacija''} i \textit{‚‚kompajliranje''}. U sažetku se javljaju oba. Pošto naslov i tema sadrže reč \textit{‚‚kompilacija''} onda treba svuda koristiti taj termin radi konzistentnosti.
+\\
 \odgovor{ Iz rada su izbačene reči izvedene iz reči ,,kompajliranje''. Radi konzistentnosti korišćen je termin ,,kompilacija'' i reči koje su izvedene iz te reči.}
 \\
 \\
 U sekciji 3, citiranje je stavljeno nakon tačke dok je na svim ostalim mestima u radu stavljeno u okviru rečenice, odnosno, pre tačke.
 \\
+\odgovor{ Greška je ispravljena. }
+\\
 \\
 U delu 3.1 fale tačka na kraju poslednje rečenice prvog i trećeg pasusa. Zatim, u trećem pasusu piše \textit{‚‚... na Slika 1''}. Potrebno je prepraviti to u \textit{‚‚... na slici 1''}. Poslednji pasus ove sekcije sadrži samo jednu rečenicu - potrebno je dopuniti ga!
+\\
+\odgovor{ Greška je ispravljena. }
 
 
 \section{Provera sadržajnosti i forme seminarskog rada}
@@ -272,13 +284,17 @@ U radu je opisan metod iterativne kompilacije i dato opravdanje za njegovo kori�
  
 
 U delu „Metode transformacija”, prvi pasus počinje rečenicom da optimizacija kompilatora ima neki cilj. To bi moglo da se protumači na pogrešan način. Mislim da bi jasnije i ispravnije bilo napisati da metode (tehnike) optimizacije imaju neki cilj, i da te metode optimizacije vrše određene transformacije koda koji im je prosleđen.
+\\
+\odgovor{ Početak rečenice je izmenjen kako bi se pojasnilo njeno značenje. }
 
 \section{Sitne primedbe}
 % Напишете своја запажања на тему штампарских-стилских-језичких грешки
 Postoji greška u naslovu seminarskog rada, jer su reči „iterativnu” i „kompilaciju” napisane velikim početnim slovima.
-
+\\
+\odgovor{ Greška je ispravljena. }
 U prvoj rečenici četvrtog pasusa treba staviti razmak ispred zagrade.
-
+\\
+\odgovor{ Greška je ispravljenja. }
 \section{Provera sadržajnosti i forme seminarskog rada}
 % Oдговорите на следећа питања --- уз сваки одговор дати и образложење
 
@@ -330,6 +346,8 @@ Iterativno kompajliranje nam može dosta doprineti u brzini izvršavanja program
 \section{Krupne primedbe i sugestije}
 % Напишете своја запажања и конструктивне идеје шта у раду недостаје и шта би требало да се промени-измени-дода-одузме да би рад био квалитетнији.
 Uvod treba malo smanjiti i neki deo iz njega, recimo za arhitekturu, pomenuti u nekom drugom delu.
+\\
+\odgovor{ Uvodni deo je smanjen. Dok za arhitekturu nije bilo dovoljno materijala za stvaranje zasebne sekcije. }
 
 \section{Sitne primedbe}
 % Напишете своја запажања на тему штампарских-стилских-језичких грешки

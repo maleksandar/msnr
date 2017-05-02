@@ -229,18 +229,14 @@ Ove tačke se testiraju i dalji rad algoritma pretrage se fokusira na prostor u 
 
 \section{Performanse}
 \label{sec:performanse}
-Optimizovanje programa u okviru statičke kompilacije se zasniva na proceni poboljšanja 
+Optimizacija programa u okviru statičke kompilacije se zasniva na proceni poboljšanja 
 bez prethodnog izvršavanja programa (različiti redosledi optimizacija daju različite rezultate). 
 Odluka da nekoj transformaciji treba dati prednost u odnosu na drugu, kod statičke kompilacije,
 donosi se na osnovu predefinisanog skupa ocena. Lako je zaključiti da primenom iterativne kompilacije 
 možemo da testiramo veći broj mogućih nizova transformacija čime dolazimo do rešenja koja bolje optimizuju
-program. 
-
-\par
-Tokom pretrage u okviru iterativne kompilacije kao glavni način ocenjivanja kvaliteta dobijenog niza transformacija
+program. Tokom pretrage u okviru iterativne kompilacije kao glavni način ocenjivanja kvaliteta dobijenog niza transformacija
  se uzima vreme izvršavanja tako optimizovanog programa. Međutim, nama nije zabranjeno da pored vremena izvršavanja
- uvedemo još neke ocene kao na primer potrošnja energije. [Promeniti]Uvođenjem potrošnje enerije kao još jedne ocene kvaliteta,
-  ne samo da tražimo rešenje koje nam daje najbolje vreme izvršavanja već i rešenje koje će nam samnjiti utrošak energije.
+ uvedemo još neke ocene (npr. potrošnja energije). 
 
 \subsection{Uticaj na vreme izvršavanja}
 \label{sec:uticaj}
@@ -320,25 +316,26 @@ ulaznih podataka brži od programa koji se dobija prilikom prevođenja sa fiksir
 \end{figure}
 
 \subsection{Odnos vremena izvršavanja i uštede energije}
-\label{sec:naslov}
+\label{sec:energija}
 Transformacije koje se koriste za optimizaciju pored toga što utiču na poboljšanje vremena izvršavanja,
- takođe utiču i na potrošnju energije. Kao što su različiti nizovi transformacija različito uticali na vreme izvršavanja, 
- tako različiti nizovi transformacija utiču i na potrošnju. Na osnovu iznetih informacija u prethodnim sekcijama možemo 
+ takođe utiču i na potrošnju energije. Kao što su različiti nizovi transformacija drugačije uticali na vreme izvršavanja, 
+ tako različiti nizovi transformacija utiču i na potrošnju energije. Na osnovu iznetih informacija u prethodnim sekcijama možemo 
  pomisliti da niz transformacija koji daje rešenje sa najboljim vremenom izvršavanja
  ujedno daje i rešenje sa najvećom uštedom energije. Takav zaključak je ispravan u većini slučajeva.
 \par
 Da bismo potkrepili prethodnu priču iznećemo neke praktične rezultate koje su prikazani u \cite{gheorghita2005iterative}.
 Prikazaćemo rezultate koji su dobijeni nad reperima MxM (veličine 128) i SOR (veličine 512). Od transformacija 
 su korišćene odmotavanje petlji (sa faktorom odmotavanja između 0 i 40) i podela na blokove (sa veličinom bloka između 0 i 100).
-Za svaki par parametara je pronadjeno rešenje i izemeereno vreme izvršavanja i potrošnja energije, a zatim su se dobijeni rezultati 
+Za svaki par parametara je pronađeno rešenje, izmereno vreme izvršavanja i potrošnja energije, a zatim su se dobijeni rezultati 
 uporedili sa najboljim mogućim rešenjem. Rezultati su prikazani na slici \ref{fig:slika5}. 
-Grafikoni pod a i c predstavljaju odnos između vremena izvršavanja dok grafikoni pod b i d odnos između potrošnje energije.
+Grafikoni pod (a) i (c) predstavljaju odnos između vremena izvršavanja dok grafikoni pod (b) i (d) odnos između potrošnje energije.
 Svaka od boja predstavlja odnos koliko je dobijeno rešenje gore od najboljeg i to u procentima. 
 Značenje svake od boja je prikazano u tabeli \ref{tab:tab1}.
 
 \par
-Ako pogledamo grafikone vidimo da se oblasti koje daju najmanje odstupanja kako u vremenu izvršavanja tako i u uštedi energije poklapaju
-kao i da rešenja koja odstupaju u vremenu iz u performansama takođe mogu da budu optimalna što se tiče uštede energije.
+Ako pogledamo grafikone vidimo da se oblasti koje daju najmanje odstupanje kako u vremenu izvršavanja tako i u uštedi 
+energije poklapaju. Takođe primećujemo da rešenja koja svojim vremenom izvršavanja odstupaju od najboljeg rešenja
+ mogu biti optimalna kad je u pitanju ušteda energije.
 
 \begin{figure}[p]
 \includegraphics[scale=0.5]{performanse4}
@@ -348,7 +345,7 @@ kao i da rešenja koja odstupaju u vremenu iz u performansama takođe mogu da bu
 
 \begin{table}[]
 \centering
-\caption{Predložiti naslov}
+\caption{Opsezi odstupanja}
 \label{tab:tab1}
 \begin{tabular}{|c|l|c|l|l|}
 \hline
@@ -384,11 +381,6 @@ Upravo zbog toga ovaj metod prevođenja nije pogodan za vreme samog
 razvijanja softvera, 
 ali je više nego poželjan za primenu na verzijama softvera prevedenih 
 i spremljenih za isporuku.
-\par
-Značaj ove tehnike može imati izuzetnog uticaja
-na efikasnost uređaja u svetu \emph{interneta stvari} (eng. \emph{Internet Of Things}) 
-gde većina uređaja ima ograničenu dostupnost električne energije, kao i u svetu 
-mobilnih uređaja.
 \par
 Nadamo se da će sa prevodiocima koji se budu razvijali u budućnosti u paketu 
 dolaziti i mnoge optimizacione tehnike i alati među kojima ćemo videti i
