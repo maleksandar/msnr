@@ -11,6 +11,7 @@
 
 \usepackage{xspace}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+% \newcommand{\iter}{\textbf{\textsc{Iterativna kompilacija}} \xpace}
 
 \title{ Optimizacija izvršavanja programa kroz Iterativnu Kompilaciju }
 \date{\today}
@@ -33,19 +34,26 @@
   Šta je iterativna kompilacija?
 \end{frame}
 
-\begin{frame}[fragile]{Metropolis}
+\begin{frame}[fragile]{Šta je iterativna kompilacija?}
 
-  The \themename theme is a Beamer theme with minimal visual noise
-  inspired by the \href{https://github.com/hsrmbeamertheme/hsrmbeamertheme}{\textsc{hsrm} Beamer
-  Theme} by Benjamin Weiss.
+  {\textbf{\textsc{Iterativna kompilacija}}\xspace} je metoda pronalaženja ulaznih parametara statičkih transformacija
+   koda koji proizvode kod sa najboljim performansama pri izvršavanju prevedenog programa.
 
-  Enable the theme by loading
+  % Enable the theme by loading
 
-  \begin{verbatim}    \documentclass{beamer}
-    \usetheme{metropolis}\end{verbatim}
+  % \begin{verbatim}    \documentclass{beamer}
+  %   \usetheme{metropolis}\end{verbatim}
 
-  Note, that you have to have Mozilla's \emph{Fira Sans} font and XeTeX
-  installed to enjoy this wonderful typography.
+  % Note, that you have to have Mozilla's \emph{Fira Sans} font and XeTeX
+  % installed to enjoy this wonderful typography.
+\end{frame}
+
+\begin{frame}[fragile]{Šta je iterativna kompilacija?}
+  \begin{itemize}[<+- | alert@+>]
+    \item \textbf{Metoda} korišćenja kompajlera
+    \item \textbf{Nije} posebna vrsta kompajlera 
+    \item Koristi tehnike \textbf{transformacije koda}
+  \end{itemize}
 \end{frame}
 \begin{frame}[fragile]{Sections}
   Sections group slides of the same topic
@@ -160,7 +168,6 @@ or show \textbf{bold} results.\end{verbatim}
 \end{frame}
 \begin{frame}{Animation}
   \begin{itemize}[<+- | alert@+>]
-    \item \alert<4>{This is\only<4>{ really} important}
     \item Now this
     \item And now this
   \end{itemize}
