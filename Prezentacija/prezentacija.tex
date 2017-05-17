@@ -10,6 +10,8 @@
 \usepackage[T2A]{fontenc} % enable Cyrillic fonts
 \usepackage{pgfplots}
 \usepgfplotslibrary{dateplot}
+\usepackage{listings}
+
 
 \usepackage{xspace}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
@@ -83,7 +85,121 @@
   Kako implementirati metod iterativne kompilacije?
 \end{frame}
 \begin{frame}[fragile]{Kako implementirati metod iterativne kompilacije?}
- ...
+  Optimizacija koda u kontekstu iterativne kompilacije se vrši iz dva koraka.
+  \begin{itemize}[<+- | alert@+>]
+    \item Primenom \textbf{transformacija} nad kodom utičemo na resurse potrebne za njegovo izvršavanje
+    \item Kombinaciju transformacija(zajedno sa parametrima) koja daje optimalan kod nalazimo uz pomoć \textbf{algoritma pretrage}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[standout]
+  Šta su metode transformacije?
+\end{frame}
+\begin{frame}[fragile]{Šta su metode transformacije?}
+
+  {\textbf{\textsc{Transformacije}}\xspace}  su izmene koje se vrše nad kodom kako bi se dobile željene performanse pri njegovom izvršavanju uz uslov da izmenjen kod mora da bude semantički ekvivalentan originalnom.
+\end{frame}
+
+\begin{frame}[fragile]{Odmotavanje petlji (eng. loop unrolling)}
+\begin{lstlisting}
+
+ int x;
+ for (x = 0; x < 100; x++)
+ {
+     delete(x);
+ }
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Odmotavanje petlji (eng. loop unrolling)}
+\begin{lstlisting}
+ int x; 
+ for (x = 0; x < 100; x += 5)
+ {
+     delete(x);
+     delete(x + 1);
+     delete(x + 2);
+     delete(x + 3);
+     delete(x + 4);
+ }
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Podela na blokove (eng. loop tiling)}
+\begin{lstlisting}
+  int i, j, a[100][100], b[100], c[100];
+  int n = 100;
+  for (i = 0; i < n; i++) {
+    c[i] = 0;
+    for (j = 0; j < n; j++) {
+      c[i] = c[i] + a[i][j] * b[j];
+    }
+  }
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Podela na blokove (eng. loop tiling)}
+\begin{lstlisting}
+  int i, j, x, y, a[100][100], b[100], c[100];
+  int n = 100;
+  for (i = 0; i < n; i += 2) {
+    c[i] = 0;
+    c[i + 1] = 0;
+    for (j = 0; j < n; j += 2) {
+      for (x = i; x < min(i + 2, n); x++) {
+        for (y = j; y < min(j + 2, n); y++) {
+          c[x] = c[x] + a[x][y] * b[y];
+        }
+      }
+    }
+  }
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Podela petlji (eng. loop fission)}
+\begin{lstlisting}
+  int i, a[100], b[100];
+  for (i = 0; i < 100; i++)
+  {
+    a[i] = 1; 
+    b[i] = 2;
+  }
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Podela petlji (eng. loop fission)}
+\begin{lstlisting}
+  int i, a[100], b[100];
+  for (i = 0; i < 100; i++)
+    a[i] = 1;                     
+  for (i = 0; i < 100; i++)
+    b[i] = 2;
+\end{lstlisting}
+\textbf{Spajanje petlji (eng. loop fusion)} predstavlja obrnutu transformaciju.
+\end{frame}
+
+\begin{frame}[fragile]{Popunjavanje niza (eng. array padding)}
+Postavlja dimenziju niza na novu vrednost. Niz mora biti lokalna varijabla, a njegova dimenzija konstantna vrednost.
+\end{frame}
+
+\begin{frame}[standout]
+  Šta su algoritmi pretrage?
+\end{frame}
+\begin{frame}[fragile]{Šta su algoritmi pretrage?}
+
+\textbf{Prostor pretrage} (eng. search space) sadrži različite kombinacije parametara za koje se testira efikasnost kompiliranog 
+programa. Kako bismo efikasno tražili optimalnu kombinaciju parametara koju ćemo na kraju i koristiti potrebno je da se što 
+lakše krećemo po prostoru pretrage, zato koristimo \textbf{algoritme pretrage}.
+\end{frame}
+
+\begin{frame}[fragile]{Šta su algoritmi pretrage?}
+Neki algoritmi pretrage koji se koriste u iterativnoj kompilaciji:
+\begin{itemize}[<+- | alert@+>]
+    \item \textbf{Genetski algoritmi}
+    \item \textbf{Pretraga mreže}
+    \item \textbf{Slučajna pretraga}
+
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Typography}
