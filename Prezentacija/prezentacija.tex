@@ -7,7 +7,6 @@
 \usepackage[scale=2]{ccicons}
 \usepackage[utf8]{inputenc}
 \usepackage[english,serbian]{babel}
-% \usepackage[unicode]{hyperref}
 \usepackage[T2A]{fontenc} % enable Cyrillic fonts
 \usepackage{pgfplots}
 \usepgfplotslibrary{dateplot}
@@ -20,18 +19,12 @@
 \date{}
 \author{Aleksandar Preočanin, Filip Novović, Aleksandar Milosavljević}
 \institute{Univerzitet u Beogradu, Matematički fakultet}
-% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
 
 \begin{document}
 
 \maketitle
 
-% \begin{frame}{Table of contents}
-%   \setbeamertemplate{section in toc}[sections numbered]
-%   \tableofcontents[hideallsubsections]
-% \end{frame}
-
-% \section{Šta je iterativna kompilacija?}
+%%%% ŠTA? %%%%
 \begin{frame}[standout]
   Šta je iterativna kompilacija?
 \end{frame}
@@ -76,6 +69,7 @@
 \begin{frame}[fragile]{Zašto koristiti iterativnu kompilaciju?}
   Vrlo često se dešava da primena dve različite optimizacije koje pojedinačno imaju pozitivan efekat, kada se primene zajedno daju rezultat koji je sporiji od verzije bez optimizacije.
 \end{frame}
+
 \begin{frame}[fragile]{Zašto koristiti iterativnu kompilaciju?}
   Suština metode iterativne kompilacije je upravo u \textbf{pronalaženju} najbolje kombinacije tih transformacija.
   
@@ -83,7 +77,16 @@
   
   Pretraga tih kombinacija i njihova evaluacija vrši se iterativnom metodom.
 \end{frame}
-\begin{frame}[fragile]{Zašto koristiti iterativnu kompilaciju?}
+
+%%%% KAKO? %%%%
+\begin{frame}[standout]
+  Kako implementirati iterativnu kompilaciju?
+\end{frame}
+\begin{frame}[fragile]{Kako implementirati iterativnu kompilaciju?}
+\alert {...}
+\end{frame}
+
+\begin{frame}
 	\themename supports 4 different titleformats:
 	\begin{itemize}
 		\item Regular
