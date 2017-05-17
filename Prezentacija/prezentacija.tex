@@ -6,6 +6,9 @@
 \usepackage{booktabs}
 \usepackage[scale=2]{ccicons}
 \usepackage[utf8]{inputenc}
+\usepackage[english,serbian]{babel}
+% \usepackage[unicode]{hyperref}
+\usepackage[T2A]{fontenc} % enable Cyrillic fonts
 \usepackage{pgfplots}
 \usepgfplotslibrary{dateplot}
 
@@ -51,8 +54,9 @@
 \begin{frame}
   Iterativna kompilacija je ključna metoda u sistemima u kojima su performanse od suštinskog značaja.
   \begin{itemize}[<+- | alert@+>]
-    \item{Mreža pametnih ure...aja (IoT)}
-    \item{Ure... aji bez pristupa konstantnom napajanju}
+    \item Mreža pametnih uređaja (IoT)
+    \item Uređaji bez pristupa konstantnom napajanju
+    \item {...}
   \end{itemize}
 \end{frame}
 
@@ -62,6 +66,14 @@
 
 \begin{frame}[fragile]{Zašto koristiti iterativnu kompilaciju?}
   Kompajliranje iterativnom metodom ima za cilj da ubrza izvršavanje prevedenog programa ili dela programa.
+\end{frame}
+
+\begin{frame}
+  Ponekad optimizacije koje se mogu primeniti na kod nisu očigledne.
+\end{frame}
+
+\begin{frame}
+  Vrlo često se dešava da primena dve različite optimizacije koje pojedinačno imaju pozitivan efekat, kada se primene zajedno daju rezultat koji je sporiji od verzije bez optimizacije.
 \end{frame}
 
 \begin{frame}[fragile]{Zašto koristiti iterativnu kompilaciju?}
