@@ -11,7 +11,6 @@
 
 \usepackage{xspace}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
-% \newcommand{\iter}{\textbf{\textsc{Iterativna kompilacija}} \xpace}
 
 \title{ Optimizacija izvršavanja programa kroz Iterativnu Kompilaciju }
 \date{\today}
@@ -37,39 +36,35 @@
 \begin{frame}[fragile]{Šta je iterativna kompilacija?}
 
   {\textbf{\textsc{Iterativna kompilacija}}\xspace} je metoda pronalaženja ulaznih parametara statičkih transformacija
-   koda koji proizvode kod sa najboljim performansama pri izvršavanju prevedenog programa.
-
-  % Enable the theme by loading
-
-  % \begin{verbatim}    \documentclass{beamer}
-  %   \usetheme{metropolis}\end{verbatim}
-
-  % Note, that you have to have Mozilla's \emph{Fira Sans} font and XeTeX
-  % installed to enjoy this wonderful typography.
+  izvornog koda za koje se dobija kod sa najboljim performansama pri izvršavanju prevedenog programa.
 \end{frame}
 
 \begin{frame}[fragile]{Šta je iterativna kompilacija?}
   \begin{itemize}[<+- | alert@+>]
-    \item \textbf{Metoda} korišćenja kompajlera
-    \item \textbf{Nije} posebna vrsta kompajlera 
+    \item \textbf{Metoda} koja koristi standardni kompajler
+    \item \textbf{Nije} posebna vrsta kompajlera
     \item Koristi tehnike \textbf{transformacije koda}
+    \item \textbf{Traži} idealne ulazne parametre tih transformacija
+    \item Pretragu vrši \textbf{iterativnom} metodom
   \end{itemize}
 \end{frame}
-\begin{frame}[fragile]{Sections}
-  Sections group slides of the same topic
-
-  \begin{verbatim}    \section{Elements}\end{verbatim}
-
-  for which \themename provides a nice progress indicator \ldots
+\begin{frame}
+  Iterativna kompilacija je ključna metoda u sistemima u kojima su performanse od suštinskog značaja.
+  \begin{itemize}[<+- | alert@+>]
+    \item{Mreža pametnih ure...aja (IoT)}
+    \item{Ure... aji bez pristupa konstantnom napajanju}
+  \end{itemize}
 \end{frame}
-
-% \section{Zašto koristiti iterativnu kompilaciju?}
 
 \begin{frame}[standout]
   Zašto koristiti iterativnu kompilaciju?
 \end{frame}
 
-\begin{frame}{Metropolis titleformats}
+\begin{frame}[fragile]{Zašto koristiti iterativnu kompilaciju?}
+  Kompajliranje iterativnom metodom ima za cilj da ubrza izvršavanje prevedenog programa ili dela programa.
+\end{frame}
+
+\begin{frame}[fragile]{Zašto koristiti iterativnu kompilaciju?}
 	\themename supports 4 different titleformats:
 	\begin{itemize}
 		\item Regular
