@@ -1,6 +1,6 @@
 \documentclass[10pt]{beamer}
 
-\usetheme[progressbar=frametitle]{metropolis}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
 \usepackage{appendixnumberbeamer}
 
 \usepackage{booktabs}
@@ -392,9 +392,65 @@ or show \textbf{bold} results.\end{verbatim}
   Some references to showcase [allowframebreaks] \cite{knuth92,ConcreteMath,Simpson,Er01,greenwade93}
 \end{frame}
 
+\begin{frame}[standout]
+  Kako oceniti dobijeno rešenje?
+\end{frame}
+
+\begin{frame}{Kako oceniti dobijeno rešenje?}
+  
+  Nakon svake iteracije potrebno je testirati i oceniti dobijeno rešenje.
+
+\end{frame}
+
+\begin{frame}{Ocenjivanje}
+
+   Kako ćemo oceniti rešenje isključivo zavisi od toga šta želimo da postignemo.
+
+\end{frame}
+
+\begin{frame}{Ocenjivanje}
+
+    Najčešće korišćene ocene su:
+    \begin{itemize}
+      \item Vreme izvršavanja
+      \item Potrošnja energije
+      \item Kombinacija prethodna dva
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Testiranje}
+
+  \begin{itemize}[<+- | alert@+>]
+    \item Testiranje se vrši na određenom skupu repera.
+    \item \textbf{Reper} predstavljaja ulaz programa koji se testira.
+    \item Kada imamo više od jednog repera dobijeni program treba izvršiti na svakom od njih.
+  \end{itemize}
+
+\end{frame}
+
 % \section{Zaključak}
 \begin{frame}[standout]
   Zaključak
+\end{frame}
+
+\begin{frame}{Zaključak}
+
+  Rezultati koji su prikazani u seminarskom radu su
+  pokazali da se iterativnom kompilacijom dolazi do 
+  značajnih poboljšanja kako u vremenu izvršavanja tako i 
+  u uštedi energije.
+
+\end{frame}
+
+\begin{frame}{Zaključak}
+
+  \begin{itemize}[<+- | @alert->]
+    \item Iterativna kompilacija daje bolje rezultate od statičke kompilacije.
+    \item Pogodno u embeded razvoju gde su brzina i ušteda energije od velikog značaja.
+    \item Mane ovog pristupa su što se vreme kompilacije znatno povećava.
+  \end{itemize}
+
 \end{frame}
 
 \begin{frame}{Summary}
