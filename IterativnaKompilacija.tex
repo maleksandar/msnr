@@ -4,6 +4,7 @@
 
 \usepackage{color}
 \usepackage{url}
+\usepackage{mathtools}
 \usepackage[T2A]{fontenc} % enable Cyrillic fonts
 \usepackage[utf8]{inputenc} % make weird characters work
 \usepackage{graphicx}
@@ -67,7 +68,6 @@
 
 \section{Uvod}
 \label{sec:uvod}
-
 U poslednjih 30 godina svedoci smo neverovatnog napretka kompjuterskih tehnologija. 
 Računari su za veoma kratko vreme prešli put od čuda tehnike koje je dozvoljeno posmatrati isključivo kroz stakleni zid serverske sobe, 
 do uređaja čije se korišćenje podrazumeva u svakodnevnom radu čoveka. Broj uređaja koje možemo smatrati računarima se konstantno povećava iz godine u godinu. 
@@ -77,7 +77,6 @@ do pre samo par godina, nismo mogli ni da pretpostavimo da će postati ,,pametni
 Ovaj fenomen eksplozije broja računara i njegovih primena doveo je do nekih logičnih posledica. 
 Arhitektura procesora od uređaja do uređaja postala je izuzetno šarolika. Zahtevi za uštedom memorije, procesorskog vremena i energije (struje) postali su primarni na uređajima koji nisu 
 (i ne mogu biti) na konstantnom izvoru napajanja. Optimizacija je ponovo postala ključni deo problema u razvoju softvera. 
-
 \par 
 Moderni programski prevodioci uglavnom primenjuju neke statičke tehnike optimizacije, primenjujući različite 
 \emph{transformacije} koda koje čuvaju semantičko značenje, kako bi proizveli što optimizovaniji izvorni kod, ali tu nastaju novi problemi. 
@@ -103,15 +102,14 @@ Od čitaoca se očekuje osnovno poznavanje procesa prevođenja programskih jezik
 \section{Metode transformacija}
 \label{sec:transformacije}
 
-Optimizacija koda u okviru procesa kompilacije ima za cilj da minimizuje ili maksimizuje određena svojstva izvršnog koda programa (npr. potrebnu procesorsku energiju) i obično se implementira u obliku niza optimizacionih transformacija. Transformacije su izmene koje se vrše nad kodom kako bi se dobile željene performanse pri njegovom izvršavanju uz uslov da izmenjen kod mora da bude semantički ekvivalentan originalnom. Optimizacija petlji je veoma značajna zato što je procenat vremena koje programi pri izvršavanju provode u petljama veliki. Iz tog razloga ćemo se u ovom poglavlju većim delom koncentrisati na njih.  \\
+Optimizacija koda u okviru procesa kompilacije ima za cilj da minimizuje ili maksimizuje određena svojstva izvršnog koda programa (npr. potrebnu procesorsku energiju) i obično se implementira u obliku niza optimizacionih transformacija. Transformacije su izmene koje se vrše nad kodom kako bi se dobile željene performanse pri njegovom izvršavanju uz uslov da izmenjen kod mora da bude semantički ekvivalentan originalnom. Optimizacija petlji je veoma značajna zato što je procenat vremena koje programi pri izvršavanju provode u petljama veliki. Iz tog razloga ćemo se u ovom poglavlju većim delom koncentrisati na njih.
 
 \textbf{Odmotavanje petlji} (eng. loop unrolling)\cite{muchnick1997advanced}.  Koristi se za smanjivanje vremena koje je potrebno za
 izvršavanje petlje po cenu povećavanja veličine koda koji joj odgovara. Cilj je da se u petlji
 smanji broj instrukcija koje se vezuju za kontrolu toka petlje. Odmotavanje petlji obično ima
 veliki doprinos kada u telu petlje postoje naredbe koje su nezavisne, odnosno mogu da se
 paralelno izvršavaju. Ovo se ostvaruje pružanjem većeg broja instrukcija hardveru nego u 
-slučaju originalnog koda.\\
-Primer petlje koja vrši sve iteracije bez odmotavanja:
+slučaju originalnog koda.\\Primer petlje koja vrši sve iteracije bez odmotavanja:
 \begin{lstlisting}
 
  int x;
@@ -133,13 +131,10 @@ i verzija u kojoj je upotrebljeno odmotavanje:
  }
 \end{lstlisting}
 
-
 \textbf{Podela na blokove} (eng. loop tiling) \cite{coleman1995tile}. Telo petlje se deli na manje blokove kako bi se osiguralo
 da lokalni podaci koji se u njemu koriste ostaju u keš memoriji sve dok ne budu opet bili potrebni.
 Doprinos se ogleda u smanjenom broju promašaja keš memorije, kao i energije memorijskog sistema koja
-bi bila utrošena na prikupljanje podataka sa alternativnih izvora.\\
-Primer koda koji vrši množenje matrica:
-
+bi bila utrošena na prikupljanje podataka sa alternativnih izvora.\\Primer koda koji vrši množenje matrica:
 \begin{lstlisting}
   int i, j, a[100][100], b[100], c[100];
   int n = 100;
@@ -192,7 +187,7 @@ koju delimo na dve petlje sa po jednom naredbom koje imaju isti opseg:
 \textbf{Spajanje petlji} (eng. loop fusion)\cite{muchnick1997advanced}.  Predstavlja transformaciju suprotnu podeli petlji. Kombinuje tela dve ili više petlji koje imaju iste
 granice u jednu. Ukoliko petlje koje spajamo koriste iste podatke, ovom transformacijom povećavamo
 njihovu lokalnost. Smanjenjem broja instrukcija koje se koriste za logiku kontrole toka umanjuje se 
-i potrebna ukupna procesorska energija.\\
+i potrebna ukupna procesorska energija.
 
 \textbf{Popunjavanje niza} (eng. array padding) \cite{Arraypad92:online}. Postavlja dimenziju niza na novu vrednost. Niz mora biti lokalna varijabla, a njegova dimenzija konstantna vrednost.
 
@@ -211,13 +206,13 @@ Prostor pretrage (eng. search space) sadrži različite kombinacije parametara z
 programa. Kako bismo efikasno tražili optimalnu kombinaciju parametara koju ćemo na kraju i koristiti potrebno je da se što 
 lakše krećemo po prostoru pretrage, zato koristimo algoritme pretrage. 
 Navešćemo sada neke algoritme pretrage uz načine njihovog funkcionisanja. 
-Primenu ovih algoritama nad konkretnim podacima kao i širi spisak možete videti u \cite{kisuki2000iterative}. \\
+Primenu ovih algoritama nad konkretnim podacima kao i širi spisak možete videti u \cite{kisuki2000iterative}.
 
-\textbf{Genetski algoritam} (eng. genetic algorithm) \cite{mitchell1998introduction}. Prvo se slučajnim izborom bira određen broj kombinacija koje proglašavamo početnom populacijom. Zatim se vrši ukrštanje različitih kombinacija, a nakon toga mutacija u željenoj meri. Na kraju se evaluira nova populacija i ukoliko nije dostignut cilj nastavlja se sa primenom algoritma.\\
+\textbf{Genetski algoritam} (eng. genetic algorithm) \cite{mitchell1998introduction}. Prvo se slučajnim izborom bira određen broj kombinacija koje proglašavamo početnom populacijom. Zatim se vrši ukrštanje različitih kombinacija, a nakon toga mutacija u željenoj meri. Na kraju se evaluira nova populacija i ukoliko nije dostignut cilj nastavlja se sa primenom algoritma.
 
 \textbf{Pretraga mreže} (eng. grid search) \cite{bergstra2012random,Knijnenburg2002}. Predstavlja tradicionalni pristup problemu optimizacije većeg broja parametara (eng. hyperparameter optimization). 
 Sastoji se od generisanja različitih tačaka unutar mreže koje su u stvari kombinacije različitih vrednosti parametara. 
-Ove tačke se testiraju i dalji rad algoritma pretrage se fokusira na prostor u okolini tačaka koje su se pokazale kao efikasne u tom trenutku. Grafički prikaz mreže tačaka i regiona polja pretrage koji su nam od značaja se može videti na slici \ref{fig:slika1}.\\
+Ove tačke se testiraju i dalji rad algoritma pretrage se fokusira na prostor u okolini tačaka koje su se pokazale kao efikasne u tom trenutku. Grafički prikaz mreže tačaka i regiona polja pretrage koji su nam od značaja se može videti na slici \ref{fig:slika1}.
 
 \begin{figure}[h]
 \includegraphics[scale=0.75]{grid.png}
@@ -250,8 +245,8 @@ program. Tokom pretrage u okviru iterativne kompilacije kao glavni način ocenji
 \end{enumerate}
 Reperi koji su korišćeni za testiranje:
 \begin{enumerate}
-\item Množenje matrica (MxM), veličine podataka 256, 300 i 301;
-\item Množenje matrica i vektora (MxV), veličine podataka 2048, 2300 i 2301;
+\item Množenje matrica ($M\times M$), veličine podataka 256, 300 i 301;
+\item Množenje matrica i vektora ($M \times V$), veličine podataka 2048, 2300 i 2301;
 \item Metod relaksacije (eng. \emph{Successive over-relaxation}, SOR), veličine podataka 128, 150 i 151;
 \item Direktna diskretna kosinusna transformacija (eng. \emph{Forward Discrete Cosine Transform}, FDCT), veličine podataka 256, 300 i 301;
 \item Rutina za kompenzaciju pokreta (eng. \emph{Motion compensation rutine}, RECO), veličine podataka 2048, 2300 i 2301;
@@ -264,10 +259,10 @@ tako prevedenih programa je prikazano na slikama \ref{fig:slika2} gde je koriš�
 \ref{fig:slika3} gde je korišćen drugi skup optimizacionih tehnika. Iz rezultata prikazanih na slici \ref{fig:slika2} vidimo da
 je došlo do poboljšanja u brzini izvršavanja čak i do 3.4 puta. Možemo primetiti i da pretraga pronalazi 
 dobro rešenje veoma brzo, unutar 50 iteracija u svim slučajevima ubrzanje programa je blizu maksimuma, osim
- u slučaju MxM i SOR. Kod MxM i SOR se tek nakon više od 100 iteracija dolazi do značajnog poboljšanja.
+ u slučaju $M \times M$ i SOR. Kod $M \times M$ i SOR se tek nakon više od 100 iteracija dolazi do značajnog poboljšanja.
 Ako uporedimo rezultate sa slike \ref{fig:slika2} i slike \ref{fig:slika3} vidimo da se približno ista poboljšanja
  dobijaju u okviru istog broja iteracija iako se korišćenjem drugog skupa optimizacija povećava prostor 
-pretrage. U slučaju MxV se nakon 350 iteracija dobija bolje rešenje u odnosu na rešenje dobijeno korišćenjem prvog skupa 
+pretrage. U slučaju $M \times V$ se nakon 350 iteracija dobija bolje rešenje u odnosu na rešenje dobijeno korišćenjem prvog skupa 
 optimizacija.
 
 \begin{figure}[p]
@@ -289,29 +284,29 @@ optimizacija.
 Prvi način prevođenja je pokazao da su za fiksiranu veličinu ulaznih podataka preformanse dobijenih programa značajno poboljšane.
 U praksi naš program se neće izvršavati stalno nad ulaznim podacima koji su iste veličine kao i oni koji su korišćeni 
 pri kompilaciji, pa se iz tog razloga pristupilo i drugom načinu kompilacije. Kod drugog načina prevođenja 
-koriste se sve tehnike transformacije, a reperi koji se koriste za testiranje su MxM, MxV, FDCT i RECO.
+koriste se sve tehnike transformacije, a reperi koji se koriste za testiranje su $M \times M$, $M \times V$, FDCT i RECO.
 Pretraga u okviru kompilacije će se izvršavati nad više različitih ulaznih podataka gde će se kao mera kvaliteta uzimati
 srednja vrednost dobijenih rezultata. Na slici \ref{fig:slika4} prikazani su dobijeni rezultati.
 Crnom bojom su prikazani rezultati dobijeni prvim načinom kompilacije. Sivom bojom su prikazani rezultati dobijeni
 drugim načinom kompilacije, s tim što su veličine ulaznih podataka sledeće:
 \begin{itemize}
-\item 256, 300 i 301 za MxM i FDCT
-\item 2048, 2300 i 2301 za MxV i RECO
+\item 256, 300 i 301 za $M \times M$ i FDCT
+\item 2048, 2300 i 2301 za $M \times V$ i RECO
 \end{itemize}
 Belom bojom su prikazani rezultati dobijeni drugim načinom kompilacije, a veličine ulaznih podataka su:
 \begin{itemize}
-\item 250, 260, 290 i 310 za MxM i FDCT
-\item 2000, 2100, 2200, 2400 za MxV i RECO
+\item 250, 260, 290 i 310 za $M \times M$ i FDCT
+\item 2000, 2100, 2200, 2400 za $M \times V$ i RECO
 \end{itemize}
 Svaki dobijeni program je pokrenut na reperima čije su veličine definisane na početku ove sekcije.
 Ako pogledamo grafik videćemo da rezultati dobijeni drugom metodom kompilacije i dalje daju značajna poboljšanja 
 u brzini izvršavanja. Možemo primetiti i da je brzina izvršavanja programa dobijenih drugom metodom za nijansu 
-sporija od programa dobijenih prvom metodom. U slučaju MxM vidimo da je program kompiliran sa 3 različite veličine 
+sporija od programa dobijenih prvom metodom. U slučaju $M \times M$ vidimo da je program kompiliran sa 3 različite veličine 
 ulaznih podataka brži od programa koji se dobija prilikom prevođenja sa fiksiranom veličinom ulaza.
 
 \begin{figure}[h]
 \includegraphics[scale=0.5]{performanse3}
-\caption{Poredjenje poboljšanja performansi}
+\caption{Poređenje poboljšanja performansi}
 \label{fig:slika4}
 \end{figure}
 
@@ -324,14 +319,13 @@ Transformacije koje se koriste za optimizaciju pored toga što utiču na pobolj�
  ujedno daje i rešenje sa najvećom uštedom energije. Takav zaključak je ispravan u većini slučajeva.
 \par
 Da bismo potkrepili prethodnu priču iznećemo neke praktične rezultate koje su prikazani u \cite{gheorghita2005iterative}.
-Prikazaćemo rezultate koji su dobijeni nad reperima MxM (veličine 128) i SOR (veličine 512). Od transformacija 
+Prikazaćemo rezultate koji su dobijeni nad reperima $M \times M$ (veličine 128) i SOR (veličine 512). Od transformacija 
 su korišćene odmotavanje petlji (sa faktorom odmotavanja između 0 i 40) i podela na blokove (sa veličinom bloka između 0 i 100).
 Za svaki par parametara je pronađeno rešenje, izmereno vreme izvršavanja i potrošnja energije, a zatim su se dobijeni rezultati 
 uporedili sa najboljim mogućim rešenjem. Rezultati su prikazani na slici \ref{fig:slika5}. 
 Grafikoni pod (a) i (c) predstavljaju odnos između vremena izvršavanja dok grafikoni pod (b) i (d) odnos između potrošnje energije.
 Svaka od boja predstavlja odnos koliko je dobijeno rešenje gore od najboljeg i to u procentima. 
 Značenje svake od boja je prikazano u tabeli \ref{tab:tab1}.
-
 \par
 Ako pogledamo grafikone vidimo da se oblasti koje daju najmanje odstupanje kako u vremenu izvršavanja tako i u uštedi 
 energije poklapaju. Takođe primećujemo da rešenja koja svojim vremenom izvršavanja odstupaju od najboljeg rešenja
@@ -339,7 +333,7 @@ energije poklapaju. Takođe primećujemo da rešenja koja svojim vremenom izvrš
 
 \begin{figure}[p]
 \includegraphics[scale=0.5]{performanse4}
-\caption{Prikaz dobijenih rezltata za MxM i SOR}
+\caption{Prikaz dobijenih rezltata za $M \times M$ i SOR}
 \label{fig:slika5}
 \end{figure}
 
